@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donasi Keluarga Elektro UI '99</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --primary-grad: linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #6d28d9 100%);
+      --success: #059669;
+      --success-bg: #ecfdf5;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --warning: #d97706;
+      --warning-bg: #fffbeb;
+      --info: #0ea5e9;
+      --info-bg: #f0f9ff;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --border-focus: #818cf8;
+      --text: #0f172a;
+      --text-2: #475569;
+      --text-3: #94a3b8;
+      --sh-sm: 0 1px 3px rgba(0, 0, 0, .08), 0 1px 2px rgba(0, 0, 0, .04);
+      --sh-md: 0 4px 12px rgba(0, 0, 0, .08), 0 2px 4px rgba(0, 0, 0, .04);
+      --sh-lg: 0 10px 30px rgba(0, 0, 0, .1), 0 4px 8px rgba(0, 0, 0, .05);
+      --r-sm: 8px;
+      --r-md: 12px;
+      --r-lg: 16px;
+      --r-xl: 24px;
+      --transition: .2s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 15px;
+    }
+
+    /* ─── VIEWS ──────────────────────────────────────── */
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    /* ─── BUTTONS ────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      border-radius: var(--r-md);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, .35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      background: #ede9fe22;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: transparent;
+      color: var(--text-2);
+    }
+
+    .btn-ghost:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    .btn-danger {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border-color: #fecaca;
+    }
+
+    .btn-danger:hover {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: #fff;
+      border-color: var(--success);
+    }
+
+    .btn-success:hover {
+      background: #047857;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(5, 150, 105, .35);
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 13px;
+      border-radius: var(--r-sm);
+    }
+
+    .btn-full {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-icon {
+      padding: 8px;
+      border-radius: var(--r-sm);
+    }
+
+    /* ─── FORMS ──────────────────────────────────────── */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-2);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 10px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-md);
+      font-size: 14px;
+      color: var(--text);
+      background: var(--card);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, .15);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .add-new-input {
+      margin-top: 8px;
+    }
+
+    .input-hint {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 4px;
+    }
+
+    /* ─── CARDS ──────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border-radius: var(--r-lg);
+      box-shadow: var(--sh-sm);
+      border: 1px solid var(--border);
+      padding: 24px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .card-subtitle {
+      font-size: 13px;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+
+    /* ─── BADGE ──────────────────────────────────────── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge-success {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .badge-primary {
+      background: #ede9fe;
+      color: var(--primary);
+    }
+
+    .badge-warning {
+      background: var(--warning-bg);
+      color: var(--warning);
+    }
+
+    /* ─── ALERT ──────────────────────────────────────── */
+    .alert {
+      padding: 12px 16px;
+      border-radius: var(--r-md);
+      font-size: 14px;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .alert.show {
+      display: block;
+    }
+
+    .alert-error {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border: 1px solid #fecaca;
+    }
+
+    .alert-success {
+      background: var(--success-bg);
+      color: var(--success);
+      border: 1px solid #a7f3d0;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       LOGIN VIEW
+    ═══════════════════════════════════════════════════ */
+    #view-login {
+      min-height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: var(--primary-grad);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #view-login.active {
+      display: flex;
+    }
+
+    #view-login::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(139, 92, 246, .3) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(79, 70, 229, .3) 0%, transparent 60%);
+    }
+
+    .login-card {
+      background: rgba(255, 255, 255, .97);
+      border-radius: var(--r-xl);
+      box-shadow: var(--sh-lg);
+      padding: 44px 40px;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-brand {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .login-logo-ring {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--primary-grad);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 16px rgba(79, 70, 229, .35);
+    }
+
+    .login-brand h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .login-brand p {
+      font-size: 13px;
+      color: var(--text-3);
+      margin-top: 4px;
+    }
+
+    .login-card .btn-full {
+      margin-top: 8px;
+      padding: 12px;
+      font-size: 15px;
+    }
+
+    .login-footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .login-footer button {
+      background: none;
+      border: none;
+      color: var(--text-3);
+      font-size: 13px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .login-footer button:hover {
+      color: var(--primary);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════════════════ */
+    .navbar {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--sh-sm);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .nav-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--primary-grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, .3);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       DASHBOARD VIEW
+    ═══════════════════════════════════════════════════ */
+    .dashboard-hero {
+      background: var(--primary-grad);
+      padding: 44px 28px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dashboard-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 10% 50%, rgba(139, 92, 246, .25) 0%, transparent 60%),
+        radial-gradient(ellipse at 90% 20%, rgba(67, 56, 202, .4) 0%, transparent 60%);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-size: 30px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: -.3px;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: rgba(255, 255, 255, .65);
+      margin-bottom: 28px;
+    }
+
+    .hero-progress-card {
+      background: rgba(255, 255, 255, .12);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: var(--r-lg);
+      padding: 22px 26px;
+    }
+
+    .progress-meta {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .progress-raised {
+      font-size: 30px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .progress-raised span {
+      font-size: 16px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .progress-goal {
+      font-size: 14px;
+      color: rgba(255, 255, 255, .7);
+      text-align: right;
+    }
+
+    .progress-goal strong {
+      display: block;
+      font-size: 18px;
+      color: #fff;
+    }
+
+    .progress-bar-track {
+      background: rgba(255, 255, 255, .18);
+      border-radius: 99px;
+      height: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #34d399, #10b981);
+      transition: width .8s cubic-bezier(.4, 0, .2, 1);
+      box-shadow: 0 0 12px rgba(16, 185, 129, .6);
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    /* Stats Cards */
+    .dashboard-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: -52px;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 900px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stat-card {
+      background: var(--card);
+      border-radius: var(--r-lg);
+      box-shadow: var(--sh-md);
+      border: 1px solid var(--border);
+      padding: 20px 22px;
+    }
+
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-3);
+      margin-top: 5px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .stat-change {
+      font-size: 12px;
+      color: var(--success);
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    /* Table Section */
+    .table-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 9px 13px 9px 38px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-md);
+      font-size: 14px;
+      outline: none;
+      background: var(--card);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .search-box input:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, .12);
+    }
+
+    .search-box::before {
+      content: '🔍';
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      pointer-events: none;
+    }
+
+    .filter-select {
+      padding: 9px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-md);
+      font-size: 14px;
+      color: var(--text);
+      background: var(--card);
+      cursor: pointer;
+      outline: none;
+    }
+
+    .donations-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .donations-table th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .donations-table th.sortable {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .donations-table th.sortable:hover {
+      color: var(--primary);
+    }
+
+    .donations-table td {
+      padding: 13px 14px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .donations-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .donations-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .donor-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .donor-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--primary-grad);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .donor-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .amount-cell {
+      font-weight: 700;
+      color: var(--success);
+      font-size: 15px;
+    }
+
+    .date-cell {
+      color: var(--text-2);
+    }
+
+    .notes-cell {
+      color: var(--text-3);
+      font-size: 13px;
+      max-width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-3);
+    }
+
+    .empty-state .empty-icon {
+      font-size: 48px;
+      margin-bottom: 14px;
+    }
+
+    .empty-state p {
+      font-size: 15px;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       ADMIN VIEW
+    ═══════════════════════════════════════════════════ */
+    .admin-header {
+      background: var(--primary-grad);
+      padding: 28px;
+    }
+
+    .admin-header-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .admin-header h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .admin-header p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, .65);
+      margin-top: 3px;
+    }
+
+    .admin-body {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 22px;
+    }
+
+    @media (max-width: 800px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Admin donation list */
+    .admin-donation-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .admin-donation-item:last-child {
+      border-bottom: none;
+    }
+
+    .admin-don-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .admin-don-main {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .admin-don-sub {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+
+    .admin-don-amount {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--success);
+      flex-shrink: 0;
+    }
+
+    /* Settings section */
+    .settings-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 20px 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      margin-bottom: 14px;
+    }
+
+    /* Tags list */
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #ede9fe;
+      color: var(--primary);
+      border-radius: 99px;
+      padding: 4px 12px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .tag-remove {
+      background: none;
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+      font-size: 15px;
+      line-height: 1;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .tag-remove:hover {
+      color: var(--danger);
+    }
+
+    /* Scrollable admin list */
+    .admin-list-scroll {
+      max-height: 340px;
+      overflow-y: auto;
+    }
+
+    .admin-list-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .admin-list-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .admin-list-scroll::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #1e293b;
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: var(--r-lg);
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: var(--sh-lg);
+      z-index: 9999;
+      opacity: 0;
+      transition: all .35s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ─── Scrollbar global ─── */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 6px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <!-- ═════════════════════════════════════════════
+     LOGIN VIEW
+════════════════════════════════════════════════ -->
+  <div id="view-login" class="view">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="login-logo-ring">💝</div>
+        <h1 style="font-size:17px;line-height:1.4;">Donasi Keluarga<br>Elektro UI '99</h1>
+        <p>Sign in to manage donations</p>
+      </div>
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="login-user">Username</label>
+          <input type="text" id="login-user" placeholder="Enter username" autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label for="login-pass">Password</label>
+          <input type="password" id="login-pass" placeholder="Enter password" autocomplete="current-password" />
+        </div>
+        <div id="login-alert" class="alert alert-error">Incorrect username or password.</div>
+        <button type="submit" class="btn btn-primary btn-full" style="padding:13px;font-size:15px;">Sign In</button>
+      </form>
+      <div class="login-footer">
+        <button onclick="showView('dashboard')">← View donations without signing in</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════════════════════════════
+     DASHBOARD VIEW
+════════════════════════════════════════════════ -->
+  <div id="view-dashboard" class="view">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <div class="nav-logo">💝</div>
+        <span style="font-size:14px;">Keluarga Elektro UI '99</span>
+      </div>
+      <div class="nav-actions" id="dash-nav-actions"></div>
+    </nav>
+
+    <div class="dashboard-hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">Donasi Keluarga Elektro UI '99</h1>
+        <p class="hero-subtitle" id="hero-month-label">Target Donasi Bulanan</p>
+        <div class="hero-progress-card">
+          <div class="progress-meta">
+            <div>
+              <div class="progress-raised" id="hero-raised">$0</div>
+              <div style="font-size:13px;color:rgba(255,255,255,.55);margin-top:2px;">Terkumpul bulan ini</div>
+            </div>
+            <div class="progress-goal">
+              <div id="hero-pct">0%</div>
+              <strong id="hero-goal">of $0 goal</strong>
+            </div>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="hero-bar" style="width:0%"></div>
+          </div>
+          <div class="progress-labels">
+            <span>$0</span>
+            <span id="hero-remaining-label">$0 remaining</span>
+            <span id="hero-goal-label">$0 goal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-body">
+      <!-- Stat Cards -->
+      <div class="stats-grid" id="stats-grid"></div>
+
+      <!-- Recipients Section -->
+      <div id="recipients-section"></div>
+
+      <!-- Overview Chart -->
+      <div class="card" style="margin-bottom:22px;">
+        <div class="card-header" style="margin-bottom:16px;">
+          <div>
+            <div class="card-title">📈 Ringkasan Keuangan</div>
+            <div class="card-subtitle">Donasi masuk, pengeluaran, dan saldo per bulan</div>
+          </div>
+        </div>
+        <div style="position:relative;height:280px;">
+          <canvas id="overview-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- Donations Table -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">All Donations</div>
+            <div class="card-subtitle" id="table-count">— entries</div>
+          </div>
+        </div>
+        <div class="table-toolbar">
+          <div class="search-box">
+            <input type="text" id="search-input" placeholder="Search donor or notes…" oninput="applyFilters()" />
+          </div>
+          <select class="filter-select" id="sort-select" onchange="applyFilters()">
+            <option value="date-desc">Newest First</option>
+            <option value="date-asc">Oldest First</option>
+            <option value="amount-desc">Highest Amount</option>
+            <option value="amount-asc">Lowest Amount</option>
+          </select>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="donations-table">
+            <thead>
+              <tr>
+                <th>Donor</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="donations-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════════════════════════════
+     ADMIN VIEW
+════════════════════════════════════════════════ -->
+  <div id="view-admin" class="view">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <div class="nav-logo">💝</div>
+        <span style="font-size:14px;">Keluarga Elektro UI '99</span>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" onclick="showView('dashboard')">← Back to Dashboard</button>
+        <button class="btn btn-outline btn-sm" onclick="handleLogout()">Log out</button>
+      </div>
+    </nav>
+
+    <div class="admin-header">
+      <div class="admin-header-inner">
+        <div style="font-size:36px;">🛠️</div>
+        <div>
+          <h1>Admin Panel</h1>
+          <p>Manage donations, donors, recipients and goal</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-body">
+      <div class="admin-grid">
+
+        <!-- LEFT: Add Donation Form -->
+        <div>
+          <div class="card" style="margin-bottom:22px;">
+            <div class="card-header" style="margin-bottom:18px;">
+              <div class="card-title">➕ Add New Donation</div>
+            </div>
+            <div id="form-alert" class="alert alert-success"></div>
+
+            <form id="donation-form" onsubmit="handleAddDonation(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="f-donor">Donor (who gave)</label>
+                  <select id="f-donor" onchange="toggleNewField('donor')">
+                    <option value="">— Select donor —</option>
+                  </select>
+                  <div class="add-new-input" id="new-donor-wrap" style="display:none;">
+                    <input type="text" id="f-donor-new" placeholder="Enter new donor name" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="f-amount">Amount</label>
+                  <input type="number" id="f-amount" min="1" step="0.01" placeholder="0.00" />
+                </div>
+                <div class="form-group">
+                  <label>Date</label>
+                  <div style="display:flex;gap:8px;">
+                    <select id="f-date-month" style="flex:1.4;">
+                      <option value="01">January</option>
+                      <option value="02">February</option>
+                      <option value="03">March</option>
+                      <option value="04">April</option>
+                      <option value="05">May</option>
+                      <option value="06">June</option>
+                      <option value="07">July</option>
+                      <option value="08">August</option>
+                      <option value="09">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    </select>
+                    <select id="f-date-year" style="flex:1;">
+                      <option value="2022">2022</option>
+                      <option value="2023">2023</option>
+                      <option value="2024">2024</option>
+                      <option value="2025">2025</option>
+                      <option value="2026">2026</option>
+                      <option value="2027">2027</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="f-notes">Notes (optional)</label>
+                <textarea id="f-notes" placeholder="Add a note about this donation…"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-success btn-full">Record Donation</button>
+            </form>
+          </div>
+
+          <!-- Settings Card -->
+          <div class="card">
+            <div class="card-title" style="margin-bottom:16px;">⚙️ Settings</div>
+
+            <div class="section-label">Target Donasi Bulanan (per bulan)</div>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <div class="form-group" style="flex:1;margin-bottom:0;">
+                <input type="number" id="s-goal" min="0" step="100" placeholder="10000" />
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <select id="s-currency">
+                  <option value="IDR" selected>IDR Rp</option>
+                  <option value="USD">USD $</option>
+                  <option value="GBP">GBP £</option>
+                  <option value="MYR">MYR RM</option>
+                  <option value="SGD">SGD S$</option>
+                  <option value="JPY">JPY ¥</option>
+                </select>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="saveSettings()">Save</button>
+            </div>
+
+            <hr class="settings-divider" />
+
+            <div class="section-label">Change Password</div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:4px;">
+              <input type="password" id="s-pass-current" placeholder="Current password"
+                style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
+              <input type="password" id="s-pass-new" placeholder="New password"
+                style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
+              <input type="password" id="s-pass-confirm" placeholder="Confirm new password"
+                style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
+              <button class="btn btn-outline btn-sm" onclick="changePassword()" style="align-self:flex-start;">Update
+                Password</button>
+            </div>
+
+            <hr class="settings-divider" />
+
+            <div class="section-label">Manage Donors</div>
+            <div style="display:flex;gap:8px;margin-bottom:10px;">
+              <input type="text" id="s-add-donor" placeholder="New donor name…"
+                style="flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
+              <button class="btn btn-outline btn-sm" onclick="addTag('donors')">Add</button>
+            </div>
+            <div class="tag-list" id="donors-tags"></div>
+
+            <hr class="settings-divider" />
+
+            <div class="section-label">Manage Recipients</div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px;">
+              <input type="text" id="s-add-recipient" placeholder="Recipient name…"
+                style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
+              <div style="display:flex;gap:8px;">
+                <input type="number" id="s-add-recipient-amount" placeholder="Amount" min="0"
+                  style="flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
+                <select id="s-add-recipient-month"
+                  style="padding:8px 10px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;">
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                <select id="s-add-recipient-year"
+                  style="padding:8px 10px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;">
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2027">2027</option>
+                </select>
+              </div>
+              <button class="btn btn-outline btn-sm" onclick="addTag('recipients')" style="align-self:flex-start;">Add
+                Recipient</button>
+            </div>
+            <div class="tag-list" id="recipients-tags"></div>
+
+            <hr class="settings-divider" />
+
+            <div class="section-label">Database</div>
+            <p style="font-size:12px;color:var(--text-3);margin-bottom:12px;line-height:1.6;">
+              Export saves the current database as a <code
+                style="background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:11px;">db.json</code> file.
+              Import replaces the current database with an uploaded file — this cannot be undone.
+            </p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn btn-outline btn-sm" onclick="exportDB()">⬇️ Export JSON</button>
+              <label class="btn btn-outline btn-sm" style="cursor:pointer;margin:0;">
+                ⬆️ Import JSON
+                <input type="file" accept=".json" onchange="importDB(event)" style="display:none;" />
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Donation History -->
+        <div class="card" style="align-self:start;">
+          <div class="card-header">
+            <div>
+              <div class="card-title">📋 Donation History</div>
+              <div class="card-subtitle" id="admin-count">0 records</div>
+            </div>
+          </div>
+          <div class="admin-list-scroll" id="admin-donation-list"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- ═════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════ -->
+  <script>
+    /* ── DEFAULT DATA ────────────────────────────── */
+    const DEFAULT_DB = {
+      settings: { goal: 5000000, currency: 'IDR', adminUser: 'admin', adminPass: '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9' },
+      donors: ['Budi Santoso', 'Siti Rahayu', 'Ahmad Fauzi', 'Dewi Kusuma', 'Rahmat Hidayat', 'Nur Aisyah'],
+      recipients: [
+        { name: 'Dana Sosial', amount: 1500000, date: '2025-05' },
+        { name: 'Kegiatan Reuni', amount: 2000000, date: '2025-05' },
+        { name: 'Beasiswa Anggota', amount: 1000000, date: '2025-04' },
+        { name: 'Bantuan Kesehatan', amount: 500000, date: '2025-03' },
+      ],
+      donations: [
+        { id: uid(), donor: 'Budi Santoso', amount: 500000, date: '2025-02-05', notes: 'Iuran bulanan' },
+        { id: uid(), donor: 'Siti Rahayu', amount: 750000, date: '2025-02-12', notes: '' },
+        { id: uid(), donor: 'Ahmad Fauzi', amount: 1000000, date: '2025-03-03', notes: 'Donasi rutin' },
+        { id: uid(), donor: 'Dewi Kusuma', amount: 500000, date: '2025-03-15', notes: '' },
+        { id: uid(), donor: 'Rahmat Hidayat', amount: 250000, date: '2025-04-02', notes: 'Semoga bermanfaat' },
+        { id: uid(), donor: 'Nur Aisyah', amount: 500000, date: '2025-04-10', notes: 'Iuran bulanan' },
+        { id: uid(), donor: 'Budi Santoso', amount: 500000, date: '2025-04-18', notes: '' },
+        { id: uid(), donor: 'Ahmad Fauzi', amount: 750000, date: '2025-05-02', notes: 'Iuran bulanan' },
+        { id: uid(), donor: 'Siti Rahayu', amount: 500000, date: '2025-05-08', notes: '' },
+      ]
+    };
+
+    /* ── STATE ───────────────────────────────────── */
+    let db = {};
+    let loggedIn = false;
+    let currentView = '';
+
+    /* ── DB UTILS ────────────────────────────────── */
+    function loadDB() {
+      const raw = localStorage.getItem('donationTrackDB');
+      db = raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(DEFAULT_DB));
+    }
+    function saveDB() {
+      localStorage.setItem('donationTrackDB', JSON.stringify(db));
+    }
+    function uid() {
+      return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    }
+
+    /* ── CURRENCY ────────────────────────────────── */
+    const SYMBOLS = { USD: '$', EUR: '€', GBP: '£', MYR: 'RM ', SGD: 'S$', IDR: 'Rp ', JPY: '¥' };
+    function sym() { return SYMBOLS[db.settings.currency] || '$'; }
+    function fmt(n) {
+      const s = sym();
+      const cur = db.settings.currency || 'USD';
+      if (cur === 'IDR' || cur === 'JPY') return s + Math.round(n).toLocaleString();
+      return s + Number(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    function fmtDate(d) {
+      if (!d) return '—';
+      const [y, m] = d.split('-');
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      return `${months[+m - 1]} ${y}`;
+    }
+    function initials(name) {
+      return name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
+    }
+    function avatarColor(name) {
+      const colors = ['#4f46e5', '#7c3aed', '#db2777', '#059669', '#d97706', '#0ea5e9', '#dc2626', '#84cc16'];
+      let h = 0; for (let c of name) h = (h * 31 + c.charCodeAt(0)) % colors.length;
+      return colors[h];
+    }
+
+    /* ── TOAST ───────────────────────────────────── */
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    /* ── NAVIGATION ──────────────────────────────── */
+    function showView(name) {
+      if (name === 'admin' && !loggedIn) { showView('login'); return; }
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById('view-' + name).classList.add('active');
+      currentView = name;
+      if (name === 'dashboard') renderDashboard();
+      if (name === 'admin') renderAdmin();
+      if (name === 'login') {
+        document.getElementById('login-alert').classList.remove('show');
+        document.getElementById('login-user').value = '';
+        document.getElementById('login-pass').value = '';
+      }
+    }
+
+    /* ── AUTH ────────────────────────────────────── */
+    async function sha256(message) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(message));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      const u = document.getElementById('login-user').value.trim();
+      const p = document.getElementById('login-pass').value;
+      const hashed = await sha256(p);
+      if (u === db.settings.adminUser && hashed === db.settings.adminPass) {
+        loggedIn = true;
+        toast('✅ Welcome back, ' + u + '!');
+        showView('admin');
+      } else {
+        document.getElementById('login-alert').classList.add('show');
+      }
+    }
+    function handleLogout() {
+      loggedIn = false;
+      toast('👋 Logged out successfully.');
+      showView('dashboard');
+    }
+
+    /* ── DASHBOARD ───────────────────────────────── */
+    function renderDashboard() {
+      renderNavActions();
+      const donations = db.donations;
+      const total = donations.reduce((s, d) => s + +d.amount, 0);
+
+      // ── Monthly calculations ──────────────────────────
+      const now = new Date();
+      const thisYear = now.getFullYear();
+      const thisMonth = now.getMonth(); // 0-based
+      const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+      const monthLabel = monthNames[thisMonth] + ' ' + thisYear;
+
+      const monthlyDonations = donations.filter(d => {
+        if (!d.date) return false;
+        const [y, m] = d.date.split('-');
+        return +y === thisYear && (+m - 1) === thisMonth;
+      });
+      const monthlyTotal = monthlyDonations.reduce((s, d) => s + +d.amount, 0);
+
+      const goal = +db.settings.goal || 0;
+      const remaining = Math.max(goal - monthlyTotal, 0);
+      const pct = goal > 0 ? Math.min((monthlyTotal / goal) * 100, 100) : 0;
+
+      // Hero month label
+      const heroMonthEl = document.getElementById('hero-month-label');
+      if (heroMonthEl) heroMonthEl.textContent = monthLabel + ' · Target Donasi Bulanan';
+
+      // Hero progress
+      document.getElementById('hero-raised').textContent = fmt(monthlyTotal);
+      document.getElementById('hero-goal').textContent = `dari target ${fmt(goal)} bulan ini`;
+      document.getElementById('hero-pct').textContent = pct.toFixed(1) + '%';
+      document.getElementById('hero-bar').style.width = pct + '%';
+      document.getElementById('hero-remaining-label').textContent = fmt(remaining) + ' sisa';
+      document.getElementById('hero-goal-label').textContent = fmt(goal) + ' target';
+
+      // Stats
+      const donorsThisMonth = new Set(monthlyDonations.map(d => d.donor)).size;
+      document.getElementById('stats-grid').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-icon" style="background:#ede9fe;">💰</div>
+      <div class="stat-value">${fmt(monthlyTotal)}</div>
+      <div class="stat-label">Terkumpul Bulan Ini</div>
+      <div class="stat-change">${monthLabel}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:#fef9c3;">🎯</div>
+      <div class="stat-value">${fmt(goal)}</div>
+      <div class="stat-label">Target Bulanan</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:${remaining === 0 ? '#dcfce7' : '#fef2f2'};">
+        ${remaining === 0 ? '🏆' : '⏳'}
+      </div>
+      <div class="stat-value" style="color:${remaining === 0 ? 'var(--success)' : 'var(--danger)'};">${fmt(remaining)}</div>
+      <div class="stat-label">${remaining === 0 ? 'Target Tercapai! 🎉' : 'Sisa Bulan Ini'}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:#f0f9ff;">📊</div>
+      <div class="stat-value">${fmt(total)}</div>
+      <div class="stat-label">Total Semua Donasi</div>
+    </div>
+  `;
+
+      // Recipients section
+      const recipSection = document.getElementById('recipients-section');
+      if (recipSection && db.recipients.length) {
+        recipSection.innerHTML = `
+      <div class="card" style="margin-bottom:22px;">
+        <div class="card-header" style="margin-bottom:4px;">
+          <div>
+            <div class="card-title">🏦 Penerima Donasi</div>
+            <div class="card-subtitle">Dana disalurkan kepada pihak-pihak berikut</div>
+          </div>
+        </div>
+        ${db.recipients.map(r => `
+          <div class="admin-donation-item">
+            <div class="donor-avatar" style="background:${avatarColor(r.name)};width:34px;height:34px;font-size:13px;">${initials(r.name)}</div>
+            <div class="admin-don-info">
+              <div class="admin-don-main">${r.name}</div>
+              <div class="admin-don-sub">${fmtDate(r.date)}</div>
+            </div>
+            <div class="admin-don-amount">${fmt(r.amount)}</div>
+          </div>
+        `).join('')}
+      </div>`;
+      } else if (recipSection) {
+        recipSection.innerHTML = '';
+      }
+
+      applyFilters();
+      renderChart();
+    }
+
+    function applyFilters() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const sort = document.getElementById('sort-select').value;
+
+      let list = db.donations.filter(d => {
+        return d.donor.toLowerCase().includes(query) ||
+          (d.notes || '').toLowerCase().includes(query);
+      });
+
+      list.sort((a, b) => {
+        if (sort === 'date-desc') return new Date(b.date) - new Date(a.date);
+        if (sort === 'date-asc') return new Date(a.date) - new Date(b.date);
+        if (sort === 'amount-desc') return b.amount - a.amount;
+        if (sort === 'amount-asc') return a.amount - b.amount;
+        return 0;
+      });
+
+      renderTable(list);
+      document.getElementById('table-count').textContent = `${list.length} of ${db.donations.length} entries`;
+    }
+
+    function renderTable(list) {
+      const tbody = document.getElementById('donations-tbody');
+      if (!list.length) {
+        tbody.innerHTML = `<tr><td colspan="4">
+      <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <p>No donations found matching your search.</p>
+      </div>
+    </td></tr>`;
+        return;
+      }
+      tbody.innerHTML = list.map(d => `
+    <tr>
+      <td>
+        <div class="donor-cell">
+          <div class="donor-avatar" style="background:${avatarColor(d.donor)};">${initials(d.donor)}</div>
+          <span class="donor-name">${d.donor}</span>
+        </div>
+      </td>
+      <td class="amount-cell">${fmt(d.amount)}</td>
+      <td class="date-cell">${fmtDate(d.date)}</td>
+      <td class="notes-cell" title="${d.notes || ''}">${d.notes || '<em style="color:var(--text-3)">—</em>'}</td>
+    </tr>
+  `).join('');
+    }
+
+    function renderNavActions() {
+      document.getElementById('dash-nav-actions').innerHTML = loggedIn
+        ? `<button class="btn btn-primary btn-sm" onclick="showView('admin')">🛠️ Admin Panel</button>
+       <button class="btn btn-ghost btn-sm" onclick="handleLogout()">Log out</button>`
+        : `<button class="btn btn-outline btn-sm" onclick="showView('login')">Admin Login</button>`;
+    }
+
+    /* ── CHART ───────────────────────────────────── */
+    function renderChart() {
+      const canvas = document.getElementById('overview-chart');
+      if (!canvas) return;
+
+      // Collect all months from both donations and recipient disbursements
+      const monthSet = new Set();
+      db.donations.forEach(d => { if (d.date) monthSet.add(d.date.slice(0, 7)); });
+      db.recipients.forEach(r => { if (r.date) monthSet.add(r.date.slice(0, 7)); });
+
+      const months = Array.from(monthSet).sort();
+      if (!months.length) return;
+
+      // Aggregate per month
+      const donMap = {}, spendMap = {};
+      months.forEach(m => { donMap[m] = 0; spendMap[m] = 0; });
+      db.donations.forEach(d => {
+        const m = d.date?.slice(0, 7);
+        if (m in donMap) donMap[m] += +d.amount;
+      });
+      db.recipients.forEach(r => {
+        const m = r.date?.slice(0, 7);
+        if (m in spendMap) spendMap[m] += +r.amount;
+      });
+
+      // Running balance
+      let bal = 0;
+      const balData = months.map(m => { bal += donMap[m] - spendMap[m]; return bal; });
+
+      const labels = months.map(m => fmtDate(m));
+      const donData = months.map(m => donMap[m]);
+      const spendData = months.map(m => spendMap[m]);
+
+      if (window._overviewChart) window._overviewChart.destroy();
+
+      window._overviewChart = new Chart(canvas, {
+        data: {
+          labels,
+          datasets: [
+            {
+              type: 'bar',
+              label: 'Donasi Masuk',
+              data: donData,
+              backgroundColor: 'rgba(79,70,229,0.75)',
+              borderColor: '#4f46e5',
+              borderWidth: 0,
+              borderRadius: 5,
+              order: 2,
+            },
+            {
+              type: 'bar',
+              label: 'Pengeluaran',
+              data: spendData,
+              backgroundColor: 'rgba(220,38,38,0.70)',
+              borderColor: '#dc2626',
+              borderWidth: 0,
+              borderRadius: 5,
+              order: 2,
+            },
+            {
+              type: 'line',
+              label: 'Saldo Kumulatif',
+              data: balData,
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16,185,129,0.08)',
+              borderWidth: 2.5,
+              pointBackgroundColor: '#10b981',
+              pointRadius: 4,
+              pointHoverRadius: 6,
+              fill: true,
+              tension: 0.4,
+              order: 1,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: { font: { size: 12 }, boxWidth: 12, padding: 16 }
+            },
+            tooltip: {
+              callbacks: {
+                label: ctx => `  ${ctx.dataset.label}: ${fmt(ctx.parsed.y)}`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { font: { size: 12 } }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(0,0,0,0.05)' },
+              ticks: {
+                font: { size: 12 },
+                callback: v => {
+                  const s = sym();
+                  const cur = db.settings.currency || 'IDR';
+                  return (cur === 'IDR' || cur === 'JPY')
+                    ? s + (v >= 1000000 ? (v / 1000000).toFixed(1) + 'jt' : v >= 1000 ? (v / 1000).toFixed(0) + 'rb' : v)
+                    : s + (v >= 1000 ? (v / 1000).toFixed(1) + 'k' : v);
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    /* ── ADMIN ───────────────────────────────────── */
+    function renderAdmin() {
+      // Set today's date as default
+      const now = new Date();
+      document.getElementById('f-date-month').value = String(now.getMonth() + 1).padStart(2, '0');
+      document.getElementById('f-date-year').value = String(now.getFullYear());
+      refreshDonorDropdowns();
+      renderAdminList();
+      renderTags();
+
+      // Pre-fill settings
+      document.getElementById('s-goal').value = db.settings.goal;
+      document.getElementById('s-currency').value = db.settings.currency || 'USD';
+    }
+
+    function refreshDonorDropdowns() {
+      const donorSel = document.getElementById('f-donor');
+      const dv = donorSel.value;
+      donorSel.innerHTML = '<option value="">— Select donor —</option>' +
+        db.donors.map(d => `<option value="${d}" ${dv === d ? 'selected' : ''}>${d}</option>`).join('') +
+        '<option value="__new__">➕ Add new donor…</option>';
+    }
+
+    function toggleNewField(type) {
+      const sel = document.getElementById('f-' + type);
+      const wrap = document.getElementById('new-' + type + '-wrap');
+      wrap.style.display = sel.value === '__new__' ? 'block' : 'none';
+    }
+
+    function handleAddDonation(e) {
+      e.preventDefault();
+      const alert = document.getElementById('form-alert');
+      alert.classList.remove('show');
+
+      const donorSel = document.getElementById('f-donor').value;
+      let donor = donorSel === '__new__'
+        ? document.getElementById('f-donor-new').value.trim()
+        : donorSel;
+
+      const amount = parseFloat(document.getElementById('f-amount').value);
+      const date = document.getElementById('f-date-year').value + '-' + document.getElementById('f-date-month').value;
+      const notes = document.getElementById('f-notes').value.trim();
+
+      if (!donor || !amount || !date) {
+        alert.textContent = '⚠️ Please fill in donor, amount, and date.';
+        alert.className = 'alert alert-error show';
+        return;
+      }
+
+      if (donorSel === '__new__' && donor && !db.donors.includes(donor)) db.donors.push(donor);
+
+      db.donations.unshift({ id: uid(), donor, amount, date, notes });
+      saveDB();
+
+      alert.textContent = `✅ Donation of ${fmt(amount)} from ${donor} recorded!`;
+      alert.className = 'alert alert-success show';
+      setTimeout(() => alert.classList.remove('show'), 3000);
+
+      document.getElementById('donation-form').reset();
+      const _now = new Date();
+      document.getElementById('f-date-month').value = String(_now.getMonth() + 1).padStart(2, '0');
+      document.getElementById('f-date-year').value = String(_now.getFullYear());
+      document.getElementById('new-donor-wrap').style.display = 'none';
+
+      refreshDonorDropdowns();
+      renderAdminList();
+      renderTags();
+      toast('💝 Donation recorded successfully!');
+    }
+
+    function renderAdminList() {
+      const list = document.getElementById('admin-donation-list');
+      const count = document.getElementById('admin-count');
+      count.textContent = `${db.donations.length} record${db.donations.length !== 1 ? 's' : ''}`;
+
+      if (!db.donations.length) {
+        list.innerHTML = '<div class="empty-state" style="padding:40px 20px;"><div class="empty-icon">📭</div><p>No donations yet.</p></div>';
+        return;
+      }
+      list.innerHTML = db.donations.map(d => `
+    <div class="admin-donation-item">
+      <div class="donor-avatar" style="background:${avatarColor(d.donor)};width:32px;height:32px;font-size:12px;">${initials(d.donor)}</div>
+      <div class="admin-don-info">
+        <div class="admin-don-main">${d.donor}</div>
+        <div class="admin-don-sub">${fmtDate(d.date)}${d.notes ? ' · ' + d.notes : ''}</div>
+      </div>
+      <div class="admin-don-amount">${fmt(d.amount)}</div>
+      <button class="btn btn-danger btn-icon btn-sm" onclick="deleteDonation('${d.id}')" title="Delete">✕</button>
+    </div>
+  `).join('');
+    }
+
+    function deleteDonation(id) {
+      const d = db.donations.find(x => x.id === id);
+      if (!d) return;
+      if (!confirm(`Delete donation of ${fmt(d.amount)} from ${d.donor}?`)) return;
+      db.donations = db.donations.filter(x => x.id !== id);
+      saveDB();
+      renderAdminList();
+      toast('🗑️ Donation removed.');
+    }
+
+    function saveSettings() {
+      const goal = parseFloat(document.getElementById('s-goal').value);
+      const cur = document.getElementById('s-currency').value;
+      if (isNaN(goal) || goal < 0) { toast('⚠️ Enter a valid goal amount.'); return; }
+      db.settings.goal = goal;
+      db.settings.currency = cur;
+      saveDB();
+      toast('✅ Settings saved!');
+    }
+
+    /* ── EXPORT / IMPORT ─────────────────────────── */
+    function exportDB() {
+      const json = JSON.stringify(db, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const date = new Date().toISOString().slice(0, 10);
+      a.href = url;
+      a.download = `ke-ui-99-db-${date}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      toast('⬇️ Database exported!');
+    }
+
+    function importDB(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (!imported.settings || !Array.isArray(imported.donations) ||
+            !Array.isArray(imported.donors) || !Array.isArray(imported.recipients)) {
+            toast('⚠️ Invalid database file — missing required fields.'); return;
+          }
+          if (!confirm(`Replace current database with "${file.name}"? This cannot be undone.`)) return;
+          db = imported;
+          saveDB();
+          renderDashboard();
+          renderAdmin();
+          toast('✅ Database imported successfully!');
+        } catch {
+          toast('⚠️ Failed to read file — make sure it is a valid JSON.');
+        }
+      };
+      reader.readAsText(file);
+      // Reset input so the same file can be re-imported if needed
+      event.target.value = '';
+    }
+
+    async function changePassword() {
+      const current = document.getElementById('s-pass-current').value;
+      const next = document.getElementById('s-pass-new').value;
+      const confirm = document.getElementById('s-pass-confirm').value;
+
+      if (!current || !next || !confirm) { toast('⚠️ Please fill in all password fields.'); return; }
+      if (next !== confirm) { toast('⚠️ New passwords do not match.'); return; }
+      if (next.length < 6) { toast('⚠️ Password must be at least 6 characters.'); return; }
+
+      const currentHash = await sha256(current);
+      if (currentHash !== db.settings.adminPass) { toast('❌ Current password is incorrect.'); return; }
+
+      db.settings.adminPass = await sha256(next);
+      saveDB();
+      document.getElementById('s-pass-current').value = '';
+      document.getElementById('s-pass-new').value = '';
+      document.getElementById('s-pass-confirm').value = '';
+      toast('✅ Password updated successfully!');
+    }
+
+    function renderTags() {
+      // Donors (strings)
+      const donorsCont = document.getElementById('donors-tags');
+      if (!db.donors.length) {
+        donorsCont.innerHTML = '<span style="font-size:13px;color:var(--text-3)">None added yet.</span>';
+      } else {
+        donorsCont.innerHTML = db.donors.map(name => `
+      <span class="tag">
+        ${name}
+        <button class="tag-remove" onclick="removeTag('donors', '${name.replace(/'/g, "\\'")}')" title="Remove">×</button>
+      </span>
+    `).join('');
+      }
+
+      // Recipients (objects: {name, amount, date})
+      const recipCont = document.getElementById('recipients-tags');
+      if (!db.recipients.length) {
+        recipCont.innerHTML = '<span style="font-size:13px;color:var(--text-3)">None added yet.</span>';
+      } else {
+        recipCont.innerHTML = db.recipients.map(r => `
+      <span class="tag" style="gap:8px;">
+        <span>
+          <strong>${r.name}</strong>
+          <span style="font-weight:400;opacity:.75;margin-left:4px;">${fmt(r.amount)} · ${fmtDate(r.date)}</span>
+        </span>
+        <button class="tag-remove" onclick="removeTag('recipients', '${r.name.replace(/'/g, "\\'")}')" title="Remove">×</button>
+      </span>
+    `).join('');
+      }
+
+      refreshDonorDropdowns();
+    }
+
+    function addTag(type) {
+      if (type === 'recipients') {
+        const nameInput = document.getElementById('s-add-recipient');
+        const name = nameInput.value.trim();
+        if (!name) return;
+        if (db.recipients.some(r => r.name === name)) { toast('⚠️ Already in list.'); return; }
+        const amount = parseFloat(document.getElementById('s-add-recipient-amount').value) || 0;
+        const month = document.getElementById('s-add-recipient-month').value;
+        const year = document.getElementById('s-add-recipient-year').value;
+        db.recipients.push({ name, amount, date: year + '-' + month });
+        saveDB();
+        nameInput.value = '';
+        document.getElementById('s-add-recipient-amount').value = '';
+        renderTags();
+        toast(`✅ Added "${name}"!`);
+      } else {
+        const input = document.getElementById('s-add-donor');
+        const val = input.value.trim();
+        if (!val) return;
+        if (db.donors.includes(val)) { toast('⚠️ Already in list.'); return; }
+        db.donors.push(val);
+        saveDB();
+        input.value = '';
+        renderTags();
+        toast(`✅ Added "${val}"!`);
+      }
+    }
+
+    function removeTag(type, name) {
+      if (type === 'recipients') {
+        db[type] = db[type].filter(x => x.name !== name);
+      } else {
+        db[type] = db[type].filter(x => x !== name);
+      }
+      saveDB();
+      renderTags();
+    }
+
+    /* ── INIT ────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDB();
+      showView('dashboard');
+    });
+  </script>
+</body>
+
+</html>
