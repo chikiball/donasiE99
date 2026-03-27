@@ -1261,6 +1261,20 @@
     </div>
 
 
+    <!-- ── MEMBER LOOKUP ───────────────────────── -->
+    <div style="max-width:1000px;margin:0 auto;padding:0 28px 22px;">
+      <div class="card">
+        <div class="card-title" style="margin-bottom:16px;">🔍 Member Lookup</div>
+        <div style="position:relative;">
+          <input type="text" id="lookup-input" placeholder="Search by name or donor code…" oninput="renderLookup()"
+            style="width:100%;padding:10px 13px 10px 38px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:14px;outline:none;font-family:inherit;" />
+          <span
+            style="position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:13px;pointer-events:none;">🔍</span>
+        </div>
+        <div id="lookup-results" style="margin-top:12px;max-height:320px;overflow-y:auto;"></div>
+      </div>
+    </div>
+
     <!-- ── SETTINGS ──────────────────────────── -->
     <div style="max-width:1000px;margin:0 auto;padding:0 28px 28px;">
       <!-- Settings Card -->
@@ -1505,8 +1519,8 @@
       let list = db.recipients;
       if (selectedMonth !== 'all') list = list.filter(r => r.date === selectedMonth);
       if (!list.length) { section.innerHTML = ''; return; }
-      const shown = showAllRecipients ? list : list.slice(0, 5);
-      const hasMore = list.length > 5;
+      const shown = showAllRecipients ? list : list.slice(0, 10);
+      const hasMore = list.length > 10;
       section.innerHTML = `
     <div class="card" style="margin-bottom:22px;">
       <div class="card-header" style="margin-bottom:4px;">
@@ -1631,7 +1645,7 @@
       });
 
       const total = list.length;
-      const shown = showAllDonations ? list : list.slice(0, 5);
+      const shown = showAllDonations ? list : list.slice(0, 10);
 
       renderTable(shown);
       document.getElementById('table-count').textContent = `Showing ${shown.length} of ${total} entries`;
@@ -2195,6 +2209,31 @@
       saveDB();
       renderDisbursementList();
       toast('🗑️ Disbursement removed.');
+    }
+
+    /* ── MEMBER LOOKUP ──────────────────────────── */
+    function renderLookup() {
+      const q = (document.getElementById('lookup-input').value || '').toLowerCase().trim();
+      const results = document.getElementById('lookup-results');
+      if (!q) { results.innerHTML = ''; return; }
+      const members = db.members || [];
+      const matches = members.filter(function (m) {
+        return m.name.toLowerCase().includes(q) || m.code.toLowerCase().includes(q) || m.npm.toLowerCase().includes(q);
+      });
+      if (!matches.length) {
+        results.innerHTML = '<p style="color:var(--text-3);font-size:13px;padding:8px 0;">No matches found.</p>';
+        return;
+      }
+      results.innerHTML = matches.map(function (m) {
+        return '<div class="admin-donation-item" style="padding:10px 0;">' +
+          '<div class="donor-avatar" style="background:' + avatarColor(m.name) + ';width:34px;height:34px;font-size:13px;flex-shrink:0;">' + initials(m.name) + '</div>' +
+          '<div class="admin-don-info">' +
+          '<div class="admin-don-main">' + m.name + '</div>' +
+          '<div class="admin-don-sub">' + m.npm + '</div>' +
+          '</div>' +
+          '<span class="badge badge-primary" style="font-size:13px;font-weight:700;padding:5px 12px;">' + m.code + '</span>' +
+          '</div>';
+      }).join('');
     }
 
     /* ── INIT ────────────────────────────────────── */
