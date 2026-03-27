@@ -1,0 +1,1696 @@
+{
+  "settings": {
+    "goal": 2450000,
+    "currency": "IDR",
+    "adminUser": "admin",
+    "adminPass": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"
+  },
+  "donors": [
+    "DIODA-0036",
+    "DIODA-0052",
+    "DIODA-0079",
+    "DIODA-0087",
+    "DIODA-0109",
+    "DIODA-0133",
+    "DIODA-0168",
+    "DIODA-0192",
+    "DIODA-0206",
+    "DIODA-023Y",
+    "DIODA-029X",
+    "DIODA-0303",
+    "DIODA-032X",
+    "DIODA-0346",
+    "DIODA-0389",
+    "DIODA-0443",
+    "DIODA-0451",
+    "DIODA-0516",
+    "DIODA-0532",
+    "DIODA-0567",
+    "DIODA-0605",
+    "DIODA-0621",
+    "DIODA-0699",
+    "DIODA-0702",
+    "DIODA-0729",
+    "DIODA-0745",
+    "DIODA-080X",
+    "DIODA-703Y",
+    "DIODA-7057",
+    "DIODA-7065",
+    "DIODA-709X",
+    "DIODA-7103",
+    "DIODA-99",
+    "Reuni Perak"
+  ],
+  "recipients": [
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2024-11"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2024-11"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2024-11"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2024-12"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2024-12"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2024-12"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-01"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-01"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-01"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-02"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-02"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-02"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-03"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-03"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-03"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-04"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-04"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-04"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-05"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-05"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-05"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-06"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-06"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-06"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-07"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-07"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-07"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-08"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-08"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-08"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-09"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-09"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-09"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-10"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-10"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-10"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-11"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-11"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-11"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-12"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-12"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-12"
+    },
+    {
+      "name": "DIODA-99",
+      "amount": 4000000,
+      "date": "2026-01"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2026-01"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2026-01"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2026-01"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2026-02"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2026-02"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2026-02"
+    },
+    {
+      "name": "Keluarga George",
+      "amount": 750000,
+      "date": "2025-02",
+      "notes": "THR"
+    },
+    {
+      "name": "Keluarga Tuwo",
+      "amount": 950000,
+      "date": "2025-02",
+      "notes": "THR"
+    },
+    {
+      "name": "Keluarga Rachmat",
+      "amount": 750000,
+      "date": "2025-02",
+      "notes": "THR"
+    }
+  ],
+  "donations": [
+    {
+      "id": "mn89wld2u0yke",
+      "donor": "Reuni Perak",
+      "amount": 600000,
+      "date": "2024-11",
+      "notes": "Sisa Kas Reuni Perak 2024"
+    },
+    {
+      "id": "d0002",
+      "donor": "DIODA-0052",
+      "amount": 100000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0003",
+      "donor": "DIODA-0109",
+      "amount": 200000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0004",
+      "donor": "DIODA-0168",
+      "amount": 100000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0005",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0006",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0007",
+      "donor": "DIODA-0303",
+      "amount": 200000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0008",
+      "donor": "DIODA-032X",
+      "amount": 300000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0009",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0010",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0011",
+      "donor": "DIODA-0567",
+      "amount": 100000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0012",
+      "donor": "DIODA-0605",
+      "amount": 300000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0013",
+      "donor": "DIODA-0621",
+      "amount": 300000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0014",
+      "donor": "DIODA-703Y",
+      "amount": 250000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0015",
+      "donor": "DIODA-7057",
+      "amount": 150000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0016",
+      "donor": "DIODA-709X",
+      "amount": 666667,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0001",
+      "donor": "DIODA-99",
+      "amount": 100000,
+      "date": "2024-11",
+      "notes": ""
+    },
+    {
+      "id": "d0018",
+      "donor": "DIODA-0036",
+      "amount": 100000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0019",
+      "donor": "DIODA-0052",
+      "amount": 200000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0020",
+      "donor": "DIODA-0168",
+      "amount": 100000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0021",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0022",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0023",
+      "donor": "DIODA-029X",
+      "amount": 500000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0024",
+      "donor": "DIODA-032X",
+      "amount": 300000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0025",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0026",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0027",
+      "donor": "DIODA-0605",
+      "amount": 300000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0028",
+      "donor": "DIODA-7057",
+      "amount": 150000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0029",
+      "donor": "DIODA-709X",
+      "amount": 666667,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0030",
+      "donor": "DIODA-7103",
+      "amount": 200000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0017",
+      "donor": "DIODA-99",
+      "amount": 600000,
+      "date": "2024-12",
+      "notes": ""
+    },
+    {
+      "id": "d0032",
+      "donor": "DIODA-0079",
+      "amount": 500000,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0033",
+      "donor": "DIODA-0168",
+      "amount": 100000,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0034",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0035",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0036",
+      "donor": "DIODA-0346",
+      "amount": 100000,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0037",
+      "donor": "DIODA-0443",
+      "amount": 200000,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0038",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0039",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0040",
+      "donor": "DIODA-080X",
+      "amount": 300000,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0041",
+      "donor": "DIODA-7057",
+      "amount": 150000,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0042",
+      "donor": "DIODA-709X",
+      "amount": 666667,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0043",
+      "donor": "DIODA-7103",
+      "amount": 200000,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0031",
+      "donor": "DIODA-99",
+      "amount": 100000,
+      "date": "2025-01",
+      "notes": ""
+    },
+    {
+      "id": "d0045",
+      "donor": "DIODA-0052",
+      "amount": 400000,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0046",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0047",
+      "donor": "DIODA-023Y",
+      "amount": 250000,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0048",
+      "donor": "DIODA-0303",
+      "amount": 500000,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0049",
+      "donor": "DIODA-032X",
+      "amount": 300000,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0050",
+      "donor": "DIODA-0443",
+      "amount": 200000,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0051",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0052",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0053",
+      "donor": "DIODA-0567",
+      "amount": 100000,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0054",
+      "donor": "DIODA-7057",
+      "amount": 150000,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0055",
+      "donor": "DIODA-7065",
+      "amount": 1000000,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0056",
+      "donor": "DIODA-709X",
+      "amount": 666667,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0044",
+      "donor": "DIODA-99",
+      "amount": 100000,
+      "date": "2025-02",
+      "notes": ""
+    },
+    {
+      "id": "d0062",
+      "donor": "DIODA-0036",
+      "amount": 200000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0063",
+      "donor": "DIODA-0052",
+      "amount": 200000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0064",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0065",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0066",
+      "donor": "DIODA-0443",
+      "amount": 200000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0067",
+      "donor": "DIODA-0451",
+      "amount": 100000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0068",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0069",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0070",
+      "donor": "DIODA-0567",
+      "amount": 100000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0071",
+      "donor": "DIODA-0699",
+      "amount": 100000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0072",
+      "donor": "DIODA-0729",
+      "amount": 200000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0073",
+      "donor": "DIODA-7057",
+      "amount": 150000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0074",
+      "donor": "DIODA-7065",
+      "amount": 300000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0075",
+      "donor": "DIODA-709X",
+      "amount": 666667,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0076",
+      "donor": "DIODA-7103",
+      "amount": 200000,
+      "date": "2025-03",
+      "notes": ""
+    },
+    {
+      "id": "d0078",
+      "donor": "DIODA-0079",
+      "amount": 500000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0079",
+      "donor": "DIODA-0133",
+      "amount": 200000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0080",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0081",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0082",
+      "donor": "DIODA-0443",
+      "amount": 200000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0083",
+      "donor": "DIODA-0451",
+      "amount": 100000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0084",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0085",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0086",
+      "donor": "DIODA-0567",
+      "amount": 100000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0087",
+      "donor": "DIODA-0729",
+      "amount": 200000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0088",
+      "donor": "DIODA-703Y",
+      "amount": 300000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0089",
+      "donor": "DIODA-7057",
+      "amount": 150000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0090",
+      "donor": "DIODA-709X",
+      "amount": 666667,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0077",
+      "donor": "DIODA-99",
+      "amount": 100000,
+      "date": "2025-04",
+      "notes": ""
+    },
+    {
+      "id": "d0092",
+      "donor": "DIODA-0052",
+      "amount": 500000,
+      "date": "2025-05",
+      "notes": ""
+    },
+    {
+      "id": "d0093",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2025-05",
+      "notes": ""
+    },
+    {
+      "id": "d0094",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2025-05",
+      "notes": ""
+    },
+    {
+      "id": "d0095",
+      "donor": "DIODA-0443",
+      "amount": 200000,
+      "date": "2025-05",
+      "notes": ""
+    },
+    {
+      "id": "d0096",
+      "donor": "DIODA-0451",
+      "amount": 100000,
+      "date": "2025-05",
+      "notes": ""
+    },
+    {
+      "id": "d0097",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2025-05",
+      "notes": ""
+    },
+    {
+      "id": "d0098",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2025-05",
+      "notes": ""
+    },
+    {
+      "id": "d0099",
+      "donor": "DIODA-0567",
+      "amount": 100000,
+      "date": "2025-05",
+      "notes": ""
+    },
+    {
+      "id": "d0100",
+      "donor": "DIODA-0729",
+      "amount": 200000,
+      "date": "2025-05",
+      "notes": ""
+    },
+    {
+      "id": "d0101",
+      "donor": "DIODA-7057",
+      "amount": 150000,
+      "date": "2025-05",
+      "notes": ""
+    },
+    {
+      "id": "d0102",
+      "donor": "DIODA-709X",
+      "amount": 666667,
+      "date": "2025-05",
+      "notes": ""
+    },
+    {
+      "id": "d0091",
+      "donor": "DIODA-99",
+      "amount": 400000,
+      "date": "2025-05",
+      "notes": ""
+    },
+    {
+      "id": "d0104",
+      "donor": "DIODA-0052",
+      "amount": 200000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0105",
+      "donor": "DIODA-0109",
+      "amount": 300000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0106",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0107",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0108",
+      "donor": "DIODA-029X",
+      "amount": 350000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0109",
+      "donor": "DIODA-0346",
+      "amount": 100000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0110",
+      "donor": "DIODA-0443",
+      "amount": 200000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0111",
+      "donor": "DIODA-0451",
+      "amount": 100000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0112",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0113",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0114",
+      "donor": "DIODA-0567",
+      "amount": 100000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0115",
+      "donor": "DIODA-703Y",
+      "amount": 300000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0116",
+      "donor": "DIODA-7057",
+      "amount": 150000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0117",
+      "donor": "DIODA-709X",
+      "amount": 666667,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0103",
+      "donor": "DIODA-99",
+      "amount": 100000,
+      "date": "2025-06",
+      "notes": ""
+    },
+    {
+      "id": "d0119",
+      "donor": "DIODA-0052",
+      "amount": 200000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0120",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0121",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0122",
+      "donor": "DIODA-032X",
+      "amount": 300000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0123",
+      "donor": "DIODA-0451",
+      "amount": 100000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0124",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0125",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0126",
+      "donor": "DIODA-0567",
+      "amount": 100000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0127",
+      "donor": "DIODA-0702",
+      "amount": 200000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0128",
+      "donor": "DIODA-0745",
+      "amount": 100000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0129",
+      "donor": "DIODA-7057",
+      "amount": 150000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0130",
+      "donor": "DIODA-7065",
+      "amount": 500000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0131",
+      "donor": "DIODA-709X",
+      "amount": 666667,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0118",
+      "donor": "DIODA-99",
+      "amount": 100000,
+      "date": "2025-07",
+      "notes": ""
+    },
+    {
+      "id": "d0133",
+      "donor": "DIODA-0192",
+      "amount": 200000,
+      "date": "2025-08",
+      "notes": ""
+    },
+    {
+      "id": "d0134",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2025-08",
+      "notes": ""
+    },
+    {
+      "id": "d0135",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2025-08",
+      "notes": ""
+    },
+    {
+      "id": "d0136",
+      "donor": "DIODA-029X",
+      "amount": 150000,
+      "date": "2025-08",
+      "notes": ""
+    },
+    {
+      "id": "d0137",
+      "donor": "DIODA-0451",
+      "amount": 100000,
+      "date": "2025-08",
+      "notes": ""
+    },
+    {
+      "id": "d0138",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2025-08",
+      "notes": ""
+    },
+    {
+      "id": "d0139",
+      "donor": "DIODA-0702",
+      "amount": 200000,
+      "date": "2025-08",
+      "notes": ""
+    },
+    {
+      "id": "d0140",
+      "donor": "DIODA-7057",
+      "amount": 150000,
+      "date": "2025-08",
+      "notes": ""
+    },
+    {
+      "id": "d0141",
+      "donor": "DIODA-709X",
+      "amount": 666667,
+      "date": "2025-08",
+      "notes": ""
+    },
+    {
+      "id": "d0132",
+      "donor": "DIODA-99",
+      "amount": 100000,
+      "date": "2025-08",
+      "notes": ""
+    },
+    {
+      "id": "d0143",
+      "donor": "DIODA-032X",
+      "amount": 600000,
+      "date": "2025-09",
+      "notes": ""
+    },
+    {
+      "id": "d0144",
+      "donor": "DIODA-0451",
+      "amount": 100000,
+      "date": "2025-09",
+      "notes": ""
+    },
+    {
+      "id": "d0145",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2025-09",
+      "notes": ""
+    },
+    {
+      "id": "d0146",
+      "donor": "DIODA-0532",
+      "amount": 600000,
+      "date": "2025-09",
+      "notes": ""
+    },
+    {
+      "id": "d0147",
+      "donor": "DIODA-0702",
+      "amount": 200000,
+      "date": "2025-09",
+      "notes": ""
+    },
+    {
+      "id": "d0148",
+      "donor": "DIODA-0729",
+      "amount": 200000,
+      "date": "2025-09",
+      "notes": ""
+    },
+    {
+      "id": "d0149",
+      "donor": "DIODA-7057",
+      "amount": 150000,
+      "date": "2025-09",
+      "notes": ""
+    },
+    {
+      "id": "d0150",
+      "donor": "DIODA-709X",
+      "amount": 666667,
+      "date": "2025-09",
+      "notes": ""
+    },
+    {
+      "id": "d0142",
+      "donor": "DIODA-99",
+      "amount": 100000,
+      "date": "2025-09",
+      "notes": ""
+    },
+    {
+      "id": "d0152",
+      "donor": "DIODA-0052",
+      "amount": 200000,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0153",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0154",
+      "donor": "DIODA-023Y",
+      "amount": 400000,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0155",
+      "donor": "DIODA-029X",
+      "amount": 150000,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0156",
+      "donor": "DIODA-032X",
+      "amount": 300000,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0157",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0158",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0159",
+      "donor": "DIODA-0567",
+      "amount": 50000,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0160",
+      "donor": "DIODA-0702",
+      "amount": 200000,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0161",
+      "donor": "DIODA-0729",
+      "amount": 250000,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0162",
+      "donor": "DIODA-7057",
+      "amount": 150000,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0163",
+      "donor": "DIODA-709X",
+      "amount": 666667,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0151",
+      "donor": "DIODA-99",
+      "amount": 100000,
+      "date": "2025-10",
+      "notes": ""
+    },
+    {
+      "id": "d0164",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2025-11",
+      "notes": ""
+    },
+    {
+      "id": "d0165",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2025-11",
+      "notes": ""
+    },
+    {
+      "id": "d0166",
+      "donor": "DIODA-032X",
+      "amount": 300000,
+      "date": "2025-11",
+      "notes": ""
+    },
+    {
+      "id": "d0167",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2025-11",
+      "notes": ""
+    },
+    {
+      "id": "d0168",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2025-11",
+      "notes": ""
+    },
+    {
+      "id": "d0169",
+      "donor": "DIODA-0699",
+      "amount": 100000,
+      "date": "2025-11",
+      "notes": ""
+    },
+    {
+      "id": "d0170",
+      "donor": "DIODA-0702",
+      "amount": 200000,
+      "date": "2025-11",
+      "notes": ""
+    },
+    {
+      "id": "d0171",
+      "donor": "DIODA-7057",
+      "amount": 300000,
+      "date": "2025-11",
+      "notes": ""
+    },
+    {
+      "id": "d0173",
+      "donor": "DIODA-0052",
+      "amount": 200000,
+      "date": "2025-12",
+      "notes": ""
+    },
+    {
+      "id": "d0174",
+      "donor": "DIODA-0192",
+      "amount": 100000,
+      "date": "2025-12",
+      "notes": ""
+    },
+    {
+      "id": "d0175",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2025-12",
+      "notes": ""
+    },
+    {
+      "id": "d0176",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2025-12",
+      "notes": ""
+    },
+    {
+      "id": "d0177",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2025-12",
+      "notes": ""
+    },
+    {
+      "id": "d0178",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2025-12",
+      "notes": ""
+    },
+    {
+      "id": "d0179",
+      "donor": "DIODA-0567",
+      "amount": 50000,
+      "date": "2025-12",
+      "notes": ""
+    },
+    {
+      "id": "d0180",
+      "donor": "DIODA-0702",
+      "amount": 200000,
+      "date": "2025-12",
+      "notes": ""
+    },
+    {
+      "id": "d0181",
+      "donor": "DIODA-0729",
+      "amount": 200000,
+      "date": "2025-12",
+      "notes": ""
+    },
+    {
+      "id": "d0182",
+      "donor": "DIODA-7057",
+      "amount": 300000,
+      "date": "2025-12",
+      "notes": ""
+    },
+    {
+      "id": "d0172",
+      "donor": "DIODA-99",
+      "amount": 100000,
+      "date": "2025-12",
+      "notes": ""
+    },
+    {
+      "id": "d0184",
+      "donor": "DIODA-0133",
+      "amount": 200000,
+      "date": "2026-01",
+      "notes": ""
+    },
+    {
+      "id": "d0185",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2026-01",
+      "notes": ""
+    },
+    {
+      "id": "d0186",
+      "donor": "DIODA-029X",
+      "amount": 150000,
+      "date": "2026-01",
+      "notes": ""
+    },
+    {
+      "id": "d0187",
+      "donor": "DIODA-0389",
+      "amount": 300000,
+      "date": "2026-01",
+      "notes": ""
+    },
+    {
+      "id": "d0188",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2026-01",
+      "notes": ""
+    },
+    {
+      "id": "d0189",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2026-01",
+      "notes": ""
+    },
+    {
+      "id": "d0190",
+      "donor": "DIODA-0702",
+      "amount": 200000,
+      "date": "2026-01",
+      "notes": ""
+    },
+    {
+      "id": "d0191",
+      "donor": "DIODA-7057",
+      "amount": 300000,
+      "date": "2026-01",
+      "notes": ""
+    },
+    {
+      "id": "d0183",
+      "donor": "DIODA-99",
+      "amount": 100000,
+      "date": "2026-01",
+      "notes": ""
+    },
+    {
+      "id": "d0200",
+      "donor": "DIODA-0087",
+      "amount": 500000,
+      "date": "2026-02",
+      "notes": ""
+    },
+    {
+      "id": "d0193",
+      "donor": "DIODA-0206",
+      "amount": 200000,
+      "date": "2026-02",
+      "notes": ""
+    },
+    {
+      "id": "d0194",
+      "donor": "DIODA-023Y",
+      "amount": 200000,
+      "date": "2026-02",
+      "notes": ""
+    },
+    {
+      "id": "d0195",
+      "donor": "DIODA-029X",
+      "amount": 150000,
+      "date": "2026-02",
+      "notes": ""
+    },
+    {
+      "id": "d0196",
+      "donor": "DIODA-0516",
+      "amount": 200000,
+      "date": "2026-02",
+      "notes": ""
+    },
+    {
+      "id": "d0197",
+      "donor": "DIODA-0532",
+      "amount": 300000,
+      "date": "2026-02",
+      "notes": ""
+    },
+    {
+      "id": "d0198",
+      "donor": "DIODA-0567",
+      "amount": 50000,
+      "date": "2026-02",
+      "notes": ""
+    },
+    {
+      "id": "d0199",
+      "donor": "DIODA-0702",
+      "amount": 200000,
+      "date": "2026-02",
+      "notes": ""
+    },
+    {
+      "id": "d0201",
+      "donor": "DIODA-7057",
+      "amount": 300000,
+      "date": "2026-02",
+      "notes": ""
+    },
+    {
+      "id": "d0192",
+      "donor": "DIODA-99",
+      "amount": 100000,
+      "date": "2026-02",
+      "notes": ""
+    }
+  ],
+  "recipientNames": [
+    "Keluarga George",
+    "Keluarga Rachmat",
+    "Keluarga Tuwo",
+    "DIODA-99"
+  ]
+}

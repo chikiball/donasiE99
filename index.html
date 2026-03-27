@@ -450,11 +450,12 @@
     }
 
     .hero-title {
-      font-size: 30px;
+      font-size: clamp(13px, 4.2vw, 30px);
       font-weight: 800;
       color: #fff;
       margin-bottom: 6px;
       letter-spacing: -.3px;
+      white-space: nowrap;
     }
 
     .hero-subtitle {
@@ -1017,6 +1018,9 @@
       <!-- Stat Cards -->
       <div class="stats-grid" id="stats-grid"></div>
 
+      <!-- Month / Year Filter -->
+      <div id="month-selector"></div>
+
       <!-- Recipients Section -->
       <div id="recipients-section"></div>
 
@@ -1065,10 +1069,11 @@
             <tbody id="donations-tbody"></tbody>
           </table>
         </div>
+        <div id="donations-toggle-wrap"></div>
       </div>
     </div>
-  </div>
 
+  </div>
   <!-- ═════════════════════════════════════════════
      ADMIN VIEW
 ════════════════════════════════════════════════ -->
@@ -1161,111 +1166,11 @@
             </form>
           </div>
 
-          <!-- Settings Card -->
-          <div class="card">
-            <div class="card-title" style="margin-bottom:16px;">⚙️ Settings</div>
 
-            <div class="section-label">Target Donasi Bulanan (per bulan)</div>
-            <div style="display:flex;gap:10px;align-items:center;">
-              <div class="form-group" style="flex:1;margin-bottom:0;">
-                <input type="number" id="s-goal" min="0" step="100" placeholder="10000" />
-              </div>
-              <div class="form-group" style="margin-bottom:0;">
-                <select id="s-currency">
-                  <option value="IDR" selected>IDR Rp</option>
-                  <option value="USD">USD $</option>
-                  <option value="GBP">GBP £</option>
-                  <option value="MYR">MYR RM</option>
-                  <option value="SGD">SGD S$</option>
-                  <option value="JPY">JPY ¥</option>
-                </select>
-              </div>
-              <button class="btn btn-primary btn-sm" onclick="saveSettings()">Save</button>
-            </div>
-
-            <hr class="settings-divider" />
-
-            <div class="section-label">Change Password</div>
-            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:4px;">
-              <input type="password" id="s-pass-current" placeholder="Current password"
-                style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
-              <input type="password" id="s-pass-new" placeholder="New password"
-                style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
-              <input type="password" id="s-pass-confirm" placeholder="Confirm new password"
-                style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
-              <button class="btn btn-outline btn-sm" onclick="changePassword()" style="align-self:flex-start;">Update
-                Password</button>
-            </div>
-
-            <hr class="settings-divider" />
-
-            <div class="section-label">Manage Donors</div>
-            <div style="display:flex;gap:8px;margin-bottom:10px;">
-              <input type="text" id="s-add-donor" placeholder="New donor name…"
-                style="flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
-              <button class="btn btn-outline btn-sm" onclick="addTag('donors')">Add</button>
-            </div>
-            <div class="tag-list" id="donors-tags"></div>
-
-            <hr class="settings-divider" />
-
-            <div class="section-label">Manage Recipients</div>
-            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px;">
-              <input type="text" id="s-add-recipient" placeholder="Recipient name…"
-                style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
-              <div style="display:flex;gap:8px;">
-                <input type="number" id="s-add-recipient-amount" placeholder="Amount" min="0"
-                  style="flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
-                <select id="s-add-recipient-month"
-                  style="padding:8px 10px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;">
-                  <option value="01">January</option>
-                  <option value="02">February</option>
-                  <option value="03">March</option>
-                  <option value="04">April</option>
-                  <option value="05">May</option>
-                  <option value="06">June</option>
-                  <option value="07">July</option>
-                  <option value="08">August</option>
-                  <option value="09">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
-                </select>
-                <select id="s-add-recipient-year"
-                  style="padding:8px 10px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;">
-                  <option value="2022">2022</option>
-                  <option value="2023">2023</option>
-                  <option value="2024">2024</option>
-                  <option value="2025">2025</option>
-                  <option value="2026">2026</option>
-                  <option value="2027">2027</option>
-                </select>
-              </div>
-              <button class="btn btn-outline btn-sm" onclick="addTag('recipients')" style="align-self:flex-start;">Add
-                Recipient</button>
-            </div>
-            <div class="tag-list" id="recipients-tags"></div>
-
-            <hr class="settings-divider" />
-
-            <div class="section-label">Database</div>
-            <p style="font-size:12px;color:var(--text-3);margin-bottom:12px;line-height:1.6;">
-              Export saves the current database as a <code
-                style="background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:11px;">db.json</code> file.
-              Import replaces the current database with an uploaded file — this cannot be undone.
-            </p>
-            <div style="display:flex;gap:10px;flex-wrap:wrap;">
-              <button class="btn btn-outline btn-sm" onclick="exportDB()">⬇️ Export JSON</button>
-              <label class="btn btn-outline btn-sm" style="cursor:pointer;margin:0;">
-                ⬆️ Import JSON
-                <input type="file" accept=".json" onchange="importDB(event)" style="display:none;" />
-              </label>
-            </div>
-          </div>
         </div>
 
         <!-- RIGHT: Donation History -->
-        <div class="card" style="align-self:start;">
+        <div class="card">
           <div class="card-header">
             <div>
               <div class="card-title">📋 Donation History</div>
@@ -1277,8 +1182,164 @@
 
       </div>
     </div>
-  </div>
 
+    <!-- ── DISBURSEMENT SECTION ─────────────────── -->
+    <div style="max-width:1000px;margin:0 auto;padding:0 28px 28px;">
+      <div class="admin-grid">
+
+        <!-- LEFT: Record Disbursement Form -->
+        <div class="card">
+          <div class="card-header" style="margin-bottom:18px;">
+            <div class="card-title">💸 Record Disbursement</div>
+          </div>
+          <div id="disb-alert" class="alert alert-success"></div>
+          <form id="disbursement-form" onsubmit="handleAddDisbursement(event)">
+            <div class="form-group">
+              <label>Recipient</label>
+              <select id="fd-recip-select" onchange="toggleNewDisbRecipField()">
+                <option value="">— Select recipient —</option>
+                <option value="__new__">➕ Add new recipient…</option>
+              </select>
+              <div id="fd-recip-new-wrap" style="display:none;margin-top:8px;">
+                <input type="text" id="fd-recip-new" placeholder="New recipient name…" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Amount</label>
+                <input type="number" id="fd-amount" min="1" step="0.01" placeholder="0.00" />
+              </div>
+              <div class="form-group">
+                <label>Date</label>
+                <div style="display:flex;gap:8px;">
+                  <select id="fd-month" style="flex:1.4;">
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                  </select>
+                  <select id="fd-year" style="flex:1;">
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Notes (optional)</label>
+              <textarea id="fd-notes" placeholder="Add a note about this disbursement…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-full"
+              style="background:var(--danger);color:#fff;border-color:var(--danger);">Record Disbursement</button>
+          </form>
+        </div>
+
+        <!-- RIGHT: Disbursement History -->
+        <div class="card" style="align-self:start;">
+          <div class="card-header">
+            <div>
+              <div class="card-title">📋 Disbursement History</div>
+              <div class="card-subtitle" id="disbursement-count">0 records</div>
+            </div>
+          </div>
+          <div class="admin-list-scroll" id="admin-disbursement-list"></div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ── SETTINGS ──────────────────────────── -->
+    <div style="max-width:1000px;margin:0 auto;padding:0 28px 28px;">
+      <!-- Settings Card -->
+      <div class="card">
+        <div class="card-title" style="margin-bottom:16px;">⚙️ Settings</div>
+
+        <div class="section-label">Target Donasi Bulanan (per bulan)</div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <div class="form-group" style="flex:1;margin-bottom:0;">
+            <input type="number" id="s-goal" min="0" step="100" placeholder="10000" />
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <select id="s-currency">
+              <option value="IDR" selected>IDR Rp</option>
+              <option value="USD">USD $</option>
+              <option value="GBP">GBP £</option>
+              <option value="MYR">MYR RM</option>
+              <option value="SGD">SGD S$</option>
+              <option value="JPY">JPY ¥</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="saveSettings()">Save</button>
+        </div>
+
+        <hr class="settings-divider" />
+
+        <div class="section-label">Change Password</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:4px;">
+          <input type="password" id="s-pass-current" placeholder="Current password"
+            style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
+          <input type="password" id="s-pass-new" placeholder="New password"
+            style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
+          <input type="password" id="s-pass-confirm" placeholder="Confirm new password"
+            style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
+          <button class="btn btn-outline btn-sm" onclick="changePassword()" style="align-self:flex-start;">Update
+            Password</button>
+        </div>
+
+        <hr class="settings-divider" />
+
+        <div class="section-label">Manage Donors</div>
+        <div style="display:flex;gap:8px;margin-bottom:10px;">
+          <input type="text" id="s-add-donor" placeholder="New donor name…"
+            style="flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
+          <button class="btn btn-outline btn-sm" onclick="addTag('donors')">Add</button>
+        </div>
+        <div class="tag-list" id="donors-tags"></div>
+
+        <hr class="settings-divider" />
+
+        <div class="section-label">Manage Recipients</div>
+        <div style="display:flex;gap:8px;margin-bottom:10px;">
+          <input type="text" id="s-add-recipient" placeholder="New recipient name…"
+            style="flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;" />
+          <button class="btn btn-outline btn-sm" onclick="addTag('recipients')">Add</button>
+        </div>
+        <div class="tag-list" id="recipients-tags"></div>
+
+        <hr class="settings-divider" />
+
+        <div class="section-label">Database</div>
+        <p style="font-size:12px;color:var(--text-3);margin-bottom:12px;line-height:1.6;">
+          Export saves the current database as a <code
+            style="background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:11px;">db.json</code> file.
+          Import replaces the current database with an uploaded file — this cannot be undone.
+        </p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-outline btn-sm" onclick="exportCSV()">📊 Export CSV</button>
+          <button class="btn btn-outline btn-sm" onclick="exportDB()">⬇️ Export JSON</button>
+          <label class="btn btn-outline btn-sm" style="cursor:pointer;margin:0;">
+            ⬆️ Import JSON
+            <input type="file" accept=".json" onchange="importDB(event)" style="display:none;" />
+          </label>
+          <button class="btn btn-ghost btn-sm" onclick="resetToCommitted()"
+            title="Discard local changes and reload from committed db.json">🔄 Reset to committed</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Toast -->
   <div id="toast"></div>
 
@@ -1289,35 +1350,47 @@
     /* ── DEFAULT DATA ────────────────────────────── */
     const DEFAULT_DB = {
       settings: { goal: 5000000, currency: 'IDR', adminUser: 'admin', adminPass: '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9' },
-      donors: ['Budi Santoso', 'Siti Rahayu', 'Ahmad Fauzi', 'Dewi Kusuma', 'Rahmat Hidayat', 'Nur Aisyah'],
-      recipients: [
-        { name: 'Dana Sosial', amount: 1500000, date: '2025-05' },
-        { name: 'Kegiatan Reuni', amount: 2000000, date: '2025-05' },
-        { name: 'Beasiswa Anggota', amount: 1000000, date: '2025-04' },
-        { name: 'Bantuan Kesehatan', amount: 500000, date: '2025-03' },
-      ],
-      donations: [
-        { id: uid(), donor: 'Budi Santoso', amount: 500000, date: '2025-02-05', notes: 'Iuran bulanan' },
-        { id: uid(), donor: 'Siti Rahayu', amount: 750000, date: '2025-02-12', notes: '' },
-        { id: uid(), donor: 'Ahmad Fauzi', amount: 1000000, date: '2025-03-03', notes: 'Donasi rutin' },
-        { id: uid(), donor: 'Dewi Kusuma', amount: 500000, date: '2025-03-15', notes: '' },
-        { id: uid(), donor: 'Rahmat Hidayat', amount: 250000, date: '2025-04-02', notes: 'Semoga bermanfaat' },
-        { id: uid(), donor: 'Nur Aisyah', amount: 500000, date: '2025-04-10', notes: 'Iuran bulanan' },
-        { id: uid(), donor: 'Budi Santoso', amount: 500000, date: '2025-04-18', notes: '' },
-        { id: uid(), donor: 'Ahmad Fauzi', amount: 750000, date: '2025-05-02', notes: 'Iuran bulanan' },
-        { id: uid(), donor: 'Siti Rahayu', amount: 500000, date: '2025-05-08', notes: '' },
-      ]
+      donors: [],
+      recipients: [],
+      donations: []
     };
 
     /* ── STATE ───────────────────────────────────── */
     let db = {};
     let loggedIn = false;
     let currentView = '';
+    let showAllDonations = false;
+    let showAllRecipients = false;
+    let selectedMonth = 'all';
 
     /* ── DB UTILS ────────────────────────────────── */
-    function loadDB() {
+    async function loadDB() {
       const raw = localStorage.getItem('donationTrackDB');
-      db = raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(DEFAULT_DB));
+      if (raw) {
+        db = JSON.parse(raw);
+      } else {
+        try {
+          const res = await fetch('db.json?t=' + Date.now());
+          if (!res.ok) throw new Error('not found');
+          db = await res.json();
+          saveDB(); // cache to localStorage for this session
+        } catch {
+          db = JSON.parse(JSON.stringify(DEFAULT_DB));
+        }
+      }
+      // Ensure recipientNames display list exists
+      if (!Array.isArray(db.recipientNames)) {
+        db.recipientNames = [...new Set(db.recipients.map(r => r.name))];
+      }
+    }
+
+    async function resetToCommitted() {
+      if (!confirm('This will discard any local changes and reload data from the committed db.json. Continue?')) return;
+      localStorage.removeItem('donationTrackDB');
+      await loadDB();
+      renderDashboard();
+      renderAdmin();
+      toast('🔄 Data reloaded from committed db.json!');
     }
     function saveDB() {
       localStorage.setItem('donationTrackDB', JSON.stringify(db));
@@ -1398,11 +1471,79 @@
       showView('dashboard');
     }
 
+    /* ── MONTH FILTER + RECIPIENTS ───────────────── */
+    function renderMonthSelector() {
+      const el = document.getElementById('month-selector');
+      if (!el) return;
+      const allMonths = new Set();
+      db.donations.forEach(d => { if (d.date) allMonths.add(d.date.slice(0, 7)); });
+      db.recipients.forEach(r => { if (r.date) allMonths.add(r.date.slice(0, 7)); });
+      const months = Array.from(allMonths).sort().reverse();
+      el.innerHTML = `
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;align-items:center;">
+      <span style="font-size:12px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.5px;margin-right:4px;">View:</span>
+      <button onclick="setMonthFilter('all')" class="btn btn-sm ${selectedMonth === 'all' ? 'btn-primary' : 'btn-outline'}" style="padding:5px 14px;font-size:13px;">All</button>
+      ${months.map(m => `
+        <button onclick="setMonthFilter('${m}')" class="btn btn-sm ${selectedMonth === m ? 'btn-primary' : 'btn-outline'}" style="padding:5px 14px;font-size:13px;">${fmtDate(m)}</button>
+      `).join('')}
+    </div>
+  `;
+    }
+
+    function setMonthFilter(month) {
+      selectedMonth = month;
+      showAllDonations = false;
+      showAllRecipients = false;
+      renderMonthSelector();
+      renderRecipients();
+      applyFilters();
+    }
+
+    function renderRecipients() {
+      const section = document.getElementById('recipients-section');
+      if (!section) return;
+      let list = db.recipients;
+      if (selectedMonth !== 'all') list = list.filter(r => r.date === selectedMonth);
+      if (!list.length) { section.innerHTML = ''; return; }
+      const shown = showAllRecipients ? list : list.slice(0, 5);
+      const hasMore = list.length > 5;
+      section.innerHTML = `
+    <div class="card" style="margin-bottom:22px;">
+      <div class="card-header" style="margin-bottom:4px;">
+        <div>
+          <div class="card-title">🏦 Penerima Donasi</div>
+          <div class="card-subtitle">Dana disalurkan kepada pihak-pihak berikut</div>
+        </div>
+        <span class="badge badge-primary">${list.length} penerima</span>
+      </div>
+      ${shown.map(r => `
+        <div class="admin-donation-item">
+          <div class="donor-avatar" style="background:${avatarColor(r.name)};width:34px;height:34px;font-size:13px;">${initials(r.name)}</div>
+          <div class="admin-don-info">
+            <div class="admin-don-main">${r.name}</div>
+            <div class="admin-don-sub">${fmtDate(r.date)}${r.notes ? ' · ' + r.notes : ''}</div>
+          </div>
+          <div class="admin-don-amount">${fmt(r.amount)}</div>
+        </div>
+      `).join('')}
+      ${hasMore ? `
+        <div style="text-align:center;padding-top:12px;border-top:1px solid var(--border);margin-top:4px;">
+          <button class="btn btn-ghost btn-sm" onclick="showAllRecipients=!showAllRecipients;renderRecipients();">
+            ${showAllRecipients ? '▲ Show less' : `▼ Show all ${list.length} entries`}
+          </button>
+        </div>
+      ` : ''}
+    </div>
+  `;
+    }
+
     /* ── DASHBOARD ───────────────────────────────── */
     function renderDashboard() {
       renderNavActions();
       const donations = db.donations;
       const total = donations.reduce((s, d) => s + +d.amount, 0);
+      const totalSpent = db.recipients.reduce((s, r) => s + +r.amount, 0);
+      const kasBalance = total - totalSpent;
 
       // ── Monthly calculations ──────────────────────────
       const now = new Date();
@@ -1457,37 +1598,15 @@
       <div class="stat-label">${remaining === 0 ? 'Target Tercapai! 🎉' : 'Sisa Bulan Ini'}</div>
     </div>
     <div class="stat-card">
-      <div class="stat-icon" style="background:#f0f9ff;">📊</div>
-      <div class="stat-value">${fmt(total)}</div>
-      <div class="stat-label">Total Semua Donasi</div>
+      <div class="stat-icon" style="background:#f0f9ff;">💼</div>
+      <div class="stat-value" style="color:${kasBalance >= 0 ? 'var(--success)' : 'var(--danger)'};">${fmt(kasBalance)}</div>
+      <div class="stat-label">Sisa Kas Donasi</div>
     </div>
   `;
 
-      // Recipients section
-      const recipSection = document.getElementById('recipients-section');
-      if (recipSection && db.recipients.length) {
-        recipSection.innerHTML = `
-      <div class="card" style="margin-bottom:22px;">
-        <div class="card-header" style="margin-bottom:4px;">
-          <div>
-            <div class="card-title">🏦 Penerima Donasi</div>
-            <div class="card-subtitle">Dana disalurkan kepada pihak-pihak berikut</div>
-          </div>
-        </div>
-        ${db.recipients.map(r => `
-          <div class="admin-donation-item">
-            <div class="donor-avatar" style="background:${avatarColor(r.name)};width:34px;height:34px;font-size:13px;">${initials(r.name)}</div>
-            <div class="admin-don-info">
-              <div class="admin-don-main">${r.name}</div>
-              <div class="admin-don-sub">${fmtDate(r.date)}</div>
-            </div>
-            <div class="admin-don-amount">${fmt(r.amount)}</div>
-          </div>
-        `).join('')}
-      </div>`;
-      } else if (recipSection) {
-        recipSection.innerHTML = '';
-      }
+      // Month selector + Recipients section
+      renderMonthSelector();
+      renderRecipients();
 
       applyFilters();
       renderChart();
@@ -1498,8 +1617,9 @@
       const sort = document.getElementById('sort-select').value;
 
       let list = db.donations.filter(d => {
-        return d.donor.toLowerCase().includes(query) ||
-          (d.notes || '').toLowerCase().includes(query);
+        const matchSearch = d.donor.toLowerCase().includes(query) || (d.notes || '').toLowerCase().includes(query);
+        const matchMonth = selectedMonth === 'all' || d.date === selectedMonth;
+        return matchSearch && matchMonth;
       });
 
       list.sort((a, b) => {
@@ -1510,8 +1630,16 @@
         return 0;
       });
 
-      renderTable(list);
-      document.getElementById('table-count').textContent = `${list.length} of ${db.donations.length} entries`;
+      const total = list.length;
+      const shown = showAllDonations ? list : list.slice(0, 5);
+
+      renderTable(shown);
+      document.getElementById('table-count').textContent = `Showing ${shown.length} of ${total} entries`;
+      document.getElementById('donations-toggle-wrap').innerHTML = total > 10 ? `
+    <button class="btn btn-ghost btn-sm" style="width:100%;border-top:1px solid var(--border);border-radius:0 0 var(--r-md) var(--r-md);padding:10px;" onclick="showAllDonations=!showAllDonations;applyFilters();">
+      ${showAllDonations ? '▲ Show less' : `▼ Show all ${total} donations`}
+    </button>
+  ` : '';
     }
 
     function renderTable(list) {
@@ -1667,8 +1795,15 @@
       const now = new Date();
       document.getElementById('f-date-month').value = String(now.getMonth() + 1).padStart(2, '0');
       document.getElementById('f-date-year').value = String(now.getFullYear());
+      var fdMonth = document.getElementById('fd-month');
+      var fdYear = document.getElementById('fd-year');
+      if (fdMonth) fdMonth.value = String(now.getMonth() + 1).padStart(2, '0');
+      if (fdYear) fdYear.value = String(now.getFullYear());
       refreshDonorDropdowns();
+      refreshRecipientDropdown();
+      refreshDisbRecipDropdown();
       renderAdminList();
+      renderDisbursementList();
       renderTags();
 
       // Pre-fill settings
@@ -1774,6 +1909,58 @@
     }
 
     /* ── EXPORT / IMPORT ─────────────────────────── */
+    function exportCSV() {
+      const monthSet = new Set();
+      db.donations.forEach(function (d) { if (d.date) monthSet.add(d.date.slice(0, 7)); });
+      db.recipients.forEach(function (r) { if (r.date) monthSet.add(r.date.slice(0, 7)); });
+      const months = Array.from(monthSet).sort();
+
+      const rows = [['Bulan', 'Keterangan', 'Nama', 'Jumlah', 'Saldo Kumulatif']];
+      let runningBal = 0;
+
+      months.forEach(function (m) {
+        const label = fmtDate(m);
+        const dons = db.donations.filter(function (d) { return d.date && d.date.slice(0, 7) === m; });
+        const recips = db.recipients.filter(function (r) { return r.date && r.date.slice(0, 7) === m; });
+        const totalIn = dons.reduce(function (s, d) { return s + (+d.amount); }, 0);
+        const totalOut = recips.reduce(function (s, r) { return s + (+r.amount); }, 0);
+        runningBal += totalIn - totalOut;
+
+        dons.forEach(function (d) { rows.push([label, 'Donasi', d.donor, d.amount, '']); });
+        rows.push([label, 'Total Masuk', '', totalIn, '']);
+        rows.push(['', '', '', '', '']);
+
+        recips.forEach(function (r) { rows.push([label, 'Pengeluaran', r.name, r.amount, '']); });
+        rows.push([label, 'Total Keluar', '', totalOut, '']);
+        rows.push([label, 'Saldo Kumulatif', '', '', runningBal]);
+        rows.push(['', '', '', '', '']);
+      });
+
+      const grandIn = db.donations.reduce(function (s, d) { return s + (+d.amount); }, 0);
+      const grandOut = db.recipients.reduce(function (s, r) { return s + (+r.amount); }, 0);
+      rows.push(['GRAND TOTAL', 'Total Masuk', '', grandIn, '']);
+      rows.push(['GRAND TOTAL', 'Total Keluar', '', grandOut, '']);
+      rows.push(['GRAND TOTAL', 'Saldo Akhir', '', '', grandIn - grandOut]);
+
+      function esc(v) {
+        var s = String(v);
+        return (s.indexOf(',') !== -1 || s.indexOf('"') !== -1 || s.indexOf('\n') !== -1)
+          ? '"' + s.replace(/"/g, '""') + '"'
+          : s;
+      }
+
+      var csv = rows.map(function (r) { return r.map(esc).join(','); }).join('\n');
+      var BOM = '\uFEFF';
+      var blob = new Blob([BOM + csv], { type: 'text/csv;charset=utf-8;' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'ke-ui-99-laporan-' + new Date().toISOString().slice(0, 10) + '.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+      toast('CSV laporan diekspor!');
+    }
+
     function exportDB() {
       const json = JSON.stringify(db, null, 2);
       const blob = new Blob([json], { type: 'application/json' });
@@ -1800,6 +1987,9 @@
           }
           if (!confirm(`Replace current database with "${file.name}"? This cannot be undone.`)) return;
           db = imported;
+          if (!Array.isArray(db.recipientNames)) {
+            db.recipientNames = [...new Set(db.recipients.map(r => r.name))];
+          }
           saveDB();
           renderDashboard();
           renderAdmin();
@@ -1833,13 +2023,31 @@
       toast('✅ Password updated successfully!');
     }
 
+    function toggleNewRecipField() {
+      const sel = document.getElementById('s-recip-select');
+      const wrap = document.getElementById('new-recip-name-wrap');
+      if (wrap) wrap.style.display = sel.value === '__new__' ? 'block' : 'none';
+    }
+
+    function refreshRecipientDropdown() {
+      const sel = document.getElementById('s-recip-select');
+      if (!sel) return;
+      const cur = sel.value;
+      sel.innerHTML = '<option value="">— Select recipient —</option>' +
+        (db.recipientNames || []).map(function (n) {
+          return '<option value="' + n + '"' + (cur === n ? ' selected' : '') + '>' + n + '</option>';
+        }).join('') +
+        '<option value="__new__">➕ Add new recipient…</option>';
+    }
+
     function renderTags() {
-      // Donors (strings)
+      // Donors — deduplicated
       const donorsCont = document.getElementById('donors-tags');
-      if (!db.donors.length) {
+      const uniqueDonors = [...new Set(db.donors)];
+      if (!uniqueDonors.length) {
         donorsCont.innerHTML = '<span style="font-size:13px;color:var(--text-3)">None added yet.</span>';
       } else {
-        donorsCont.innerHTML = db.donors.map(name => `
+        donorsCont.innerHTML = uniqueDonors.map(name => `
       <span class="tag">
         ${name}
         <button class="tag-remove" onclick="removeTag('donors', '${name.replace(/'/g, "\\'")}')" title="Remove">×</button>
@@ -1847,38 +2055,36 @@
     `).join('');
       }
 
-      // Recipients (objects: {name, amount, date})
+      // Recipients — display list only (db.recipientNames), never touches financial data
       const recipCont = document.getElementById('recipients-tags');
-      if (!db.recipients.length) {
+      const recipNames = db.recipientNames || [];
+      if (!recipNames.length) {
         recipCont.innerHTML = '<span style="font-size:13px;color:var(--text-3)">None added yet.</span>';
       } else {
-        recipCont.innerHTML = db.recipients.map(r => `
-      <span class="tag" style="gap:8px;">
-        <span>
-          <strong>${r.name}</strong>
-          <span style="font-weight:400;opacity:.75;margin-left:4px;">${fmt(r.amount)} · ${fmtDate(r.date)}</span>
-        </span>
-        <button class="tag-remove" onclick="removeTag('recipients', '${r.name.replace(/'/g, "\\'")}')" title="Remove">×</button>
+        recipCont.innerHTML = recipNames.map(name => `
+      <span class="tag">
+        ${name}
+        <button class="tag-remove" onclick="removeTag('recipients', '${name.replace(/'/g, "\\'")}')" title="Remove">×</button>
       </span>
     `).join('');
       }
 
       refreshDonorDropdowns();
+      refreshRecipientDropdown();
     }
 
     function addTag(type) {
       if (type === 'recipients') {
-        const nameInput = document.getElementById('s-add-recipient');
-        const name = nameInput.value.trim();
+        const input = document.getElementById('s-add-recipient');
+        const name = input.value.trim();
         if (!name) return;
-        if (db.recipients.some(r => r.name === name)) { toast('⚠️ Already in list.'); return; }
-        const amount = parseFloat(document.getElementById('s-add-recipient-amount').value) || 0;
-        const month = document.getElementById('s-add-recipient-month').value;
-        const year = document.getElementById('s-add-recipient-year').value;
-        db.recipients.push({ name, amount, date: year + '-' + month });
+        if (!db.recipientNames) db.recipientNames = [];
+        if (db.recipientNames.includes(name)) { toast('⚠️ Already in list.'); return; }
+        db.recipientNames.push(name);
         saveDB();
-        nameInput.value = '';
-        document.getElementById('s-add-recipient-amount').value = '';
+        input.value = '';
+        refreshRecipientDropdown();
+        refreshDisbRecipDropdown();
         renderTags();
         toast(`✅ Added "${name}"!`);
       } else {
@@ -1896,17 +2102,104 @@
 
     function removeTag(type, name) {
       if (type === 'recipients') {
-        db[type] = db[type].filter(x => x.name !== name);
+        // Only remove from the display name list — db.recipients financial data is untouched
+        db.recipientNames = (db.recipientNames || []).filter(n => n !== name);
       } else {
-        db[type] = db[type].filter(x => x !== name);
+        // Only remove from the donor dropdown list — db.donations records are untouched
+        db.donors = db.donors.filter(x => x !== name);
       }
       saveDB();
       renderTags();
     }
 
+    /* ── DISBURSEMENTS ───────────────────────────── */
+    function toggleNewDisbRecipField() {
+      var sel = document.getElementById('fd-recip-select');
+      var wrap = document.getElementById('fd-recip-new-wrap');
+      if (wrap) wrap.style.display = sel.value === '__new__' ? 'block' : 'none';
+    }
+
+    function refreshDisbRecipDropdown() {
+      var sel = document.getElementById('fd-recip-select');
+      if (!sel) return;
+      var cur = sel.value;
+      sel.innerHTML = '<option value="">— Select recipient —</option>' +
+        (db.recipientNames || []).map(function (n) {
+          return '<option value="' + n + '"' + (cur === n ? ' selected' : '') + '>' + n + '</option>';
+        }).join('') +
+        '<option value="__new__">➕ Add new recipient…</option>';
+    }
+
+    function handleAddDisbursement(e) {
+      e.preventDefault();
+      var alert = document.getElementById('disb-alert');
+      alert.classList.remove('show');
+      var sel = document.getElementById('fd-recip-select');
+      var name = sel.value === '__new__'
+        ? document.getElementById('fd-recip-new').value.trim()
+        : sel.value;
+      var amount = parseFloat(document.getElementById('fd-amount').value);
+      var now = new Date();
+      var month = document.getElementById('fd-month').value;
+      var year = document.getElementById('fd-year').value;
+      var notes = document.getElementById('fd-notes').value.trim();
+      if (!name) { alert.textContent = '⚠️ Please select or enter a recipient.'; alert.className = 'alert alert-error show'; return; }
+      if (!amount) { alert.textContent = '⚠️ Please enter an amount.'; alert.className = 'alert alert-error show'; return; }
+      if (!db.recipientNames) db.recipientNames = [];
+      if (!db.recipientNames.includes(name)) db.recipientNames.push(name);
+      db.recipients.push({ name: name, amount: amount, date: year + '-' + month, notes: notes });
+      saveDB();
+      alert.textContent = '✅ Disbursement of ' + fmt(amount) + ' to ' + name + ' recorded!';
+      alert.className = 'alert alert-success show';
+      setTimeout(function () { alert.classList.remove('show'); }, 3000);
+      document.getElementById('disbursement-form').reset();
+      document.getElementById('fd-month').value = String(new Date().getMonth() + 1).padStart(2, '0');
+      document.getElementById('fd-year').value = String(new Date().getFullYear());
+      document.getElementById('fd-recip-new-wrap').style.display = 'none';
+      renderDisbursementList();
+      refreshRecipientDropdown();
+      refreshDisbRecipDropdown();
+      renderTags();
+      toast('💸 Disbursement recorded!');
+    }
+
+    function renderDisbursementList() {
+      var list = document.getElementById('admin-disbursement-list');
+      var count = document.getElementById('disbursement-count');
+      if (!list) return;
+      count.textContent = db.recipients.length + ' record' + (db.recipients.length !== 1 ? 's' : '');
+      if (!db.recipients.length) {
+        list.innerHTML = '<div class="empty-state" style="padding:40px 20px;"><div class="empty-icon">📭</div><p>No disbursements yet.</p></div>';
+        return;
+      }
+      var items = db.recipients.slice().reverse();
+      list.innerHTML = items.map(function (r, i) {
+        var realIdx = db.recipients.length - 1 - i;
+        return '<div class="admin-donation-item">' +
+          '<div class="donor-avatar" style="background:' + avatarColor(r.name) + ';width:32px;height:32px;font-size:12px;">' + initials(r.name) + '</div>' +
+          '<div class="admin-don-info">' +
+          '<div class="admin-don-main">' + r.name + '</div>' +
+          '<div class="admin-don-sub">' + fmtDate(r.date) + (r.notes ? ' · ' + r.notes : '') + '</div>' +
+          '</div>' +
+          '<div class="admin-don-amount" style="color:var(--danger);">' + fmt(r.amount) + '</div>' +
+          '<button class="btn btn-danger btn-icon btn-sm" onclick="deleteDisbursement(' + realIdx + ')" title="Delete">✕</button>' +
+          '</div>';
+      }).join('');
+    }
+
+    function deleteDisbursement(idx) {
+      var r = db.recipients[idx];
+      if (!r) return;
+      if (!confirm('Delete disbursement of ' + fmt(r.amount) + ' to ' + r.name + '?')) return;
+      db.recipients.splice(idx, 1);
+      saveDB();
+      renderDisbursementList();
+      toast('🗑️ Disbursement removed.');
+    }
+
     /* ── INIT ────────────────────────────────────── */
-    document.addEventListener('DOMContentLoaded', () => {
-      loadDB();
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadDB();
       showView('dashboard');
     });
   </script>
