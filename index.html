@@ -1519,8 +1519,8 @@
       let list = db.recipients;
       if (selectedMonth !== 'all') list = list.filter(r => r.date === selectedMonth);
       if (!list.length) { section.innerHTML = ''; return; }
-      const shown = showAllRecipients ? list : list.slice(0, 10);
-      const hasMore = list.length > 10;
+      const shown = showAllRecipients ? list : list.slice(0, 5);
+      const hasMore = list.length > 5;
       section.innerHTML = `
     <div class="card" style="margin-bottom:22px;">
       <div class="card-header" style="margin-bottom:4px;">
@@ -1645,7 +1645,7 @@
       });
 
       const total = list.length;
-      const shown = showAllDonations ? list : list.slice(0, 10);
+      const shown = showAllDonations ? list : list.slice(0, 5);
 
       renderTable(shown);
       document.getElementById('table-count').textContent = `Showing ${shown.length} of ${total} entries`;
