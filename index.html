@@ -1379,18 +1379,24 @@
 
     /* ── DB UTILS ────────────────────────────────── */
     async function loadDB() {
+      // Always fetch from server first — it is the source of truth on Fly.io
+      try {
+        const res = await fetch('/api/data');
+        if (res.ok) {
+          db = await res.json();
+          localStorage.setItem('donationTrackDB', JSON.stringify(db));
+          if (!Array.isArray(db.recipientNames)) {
+            db.recipientNames = [...new Set(db.recipients.map(r => r.name))];
+          }
+          return;
+        }
+      } catch {}
+      // Fallback: localStorage (local dev without Flask server)
       const raw = localStorage.getItem('donationTrackDB');
       if (raw) {
         db = JSON.parse(raw);
       } else {
-        try {
-          const res = await fetch('db.json?t=' + Date.now());
-          if (!res.ok) throw new Error('not found');
-          db = await res.json();
-          saveDB(); // cache to localStorage for this session
-        } catch {
-          db = JSON.parse(JSON.stringify(DEFAULT_DB));
-        }
+        db = JSON.parse(JSON.stringify(DEFAULT_DB));
       }
       // Ensure recipientNames display list exists
       if (!Array.isArray(db.recipientNames)) {
@@ -1408,6 +1414,12 @@
     }
     function saveDB() {
       localStorage.setItem('donationTrackDB', JSON.stringify(db));
+      // Non-blocking server persist — silently ignored in local dev
+      fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(db)
+      }).catch(function() {});
     }
     function uid() {
       return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
