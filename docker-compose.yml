@@ -1,0 +1,35 @@
+services:
+  donasie99:
+    build: .
+    container_name: donasie99
+    restart: unless-stopped
+    expose:
+      - "8080"
+    environment:
+      - DATA_DIR=/data
+    volumes:
+      - donasi-data:/data
+    networks:
+      - server-net
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - "no-new-privileges:true"
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+          cpus: '0.5'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  server-net:
+    external: true
+
+volumes:
+  donasi-data:
