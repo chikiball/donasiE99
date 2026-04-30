@@ -176,7 +176,9 @@ Special entry: DIODA-99 = anonymous donor (Hamba ALLAH).
 
 ---
 
-## Deployment (Fly.io)
+## Deployment
+
+### A. Fly.io (legacy)
 
 - App name: donasie99
 - URL: https://donasie99.fly.dev
@@ -186,7 +188,7 @@ Special entry: DIODA-99 = anonymous donor (Hamba ALLAH).
 - IMPORTANT: always keep at exactly 1 machine (fly scale count 1)
   Running 2+ machines causes each to have its own separate db.json
 
-### Useful commands
+#### Useful commands
 ```bash
 fly status
 fly logs
@@ -196,13 +198,110 @@ fly ssh console
 fly ssh console -C "cat /data/db.json" > db.json   # download live database
 ```
 
-### Database backup
+#### Database backup
 ```bash
 fly ssh console -C "cat /data/db.json" > db.json
 git add db.json
 git commit -m "Backup db.json $(date +%Y-%m-%d)"
 git push
 ```
+
+---
+
+### B. Home Server (primary)
+
+- **Server:** Ubuntu home server at `/home/nandha/server/`
+- **Domain:** `nandharu.uk` (Cloudflare)
+- **Live URL:** https://donasie99.nandharu.uk
+- **Architecture:** Cloudflare Tunnel → Nginx → Docker (zero exposed ports)
+
+#### Traffic flow
+
+```
+Visitor → https://donasie99.nandharu.uk
+    │
+    ▼
+┌──────────────────────────────┐
+│  Cloudflare Edge             │  HTTPS termination, DDoS, WAF, caching
+└──────────┬───────────────────┘
+           │  encrypted tunnel (outbound-only from server)
+           ▼
+┌──────────────────────────────┐
+│  cloudflare-tunnel           │  cloudflare/cloudflared:latest
+│  network: server-net         │  no host ports
+└──────────┬───────────────────┘
+           │  http://nginx-gateway:80
+           ▼
+┌──────────────────────────────┐
+│  nginx-gateway               │  nginx:alpine, rate limiting, security headers
+│  network: server-net         │
+└──────────┬───────────────────┘
+           │  http://donasie99:8080
+           ▼
+┌──────────────────────────────┐
+│  donasie99                   │  python:3.12-slim, gunicorn 1 worker, non-root
+│  network: server-net         │  read-only fs, 512 MB RAM, 0.5 CPU
+│  volume: donasi-data:/data   │
+└──────────────────────────────┘
+```
+
+#### Key files added for home server deployment
+
+| File | Purpose |
+|---|---|
+| `docker-compose.yml` | App container (joins server-net, named volume, hardened) |
+| `Dockerfile` | Updated — non-root appuser, gunicorn, curl healthcheck |
+| `server-setup/nginx/donasie99.conf` | Nginx reverse proxy config |
+
+#### Deployment steps (server already set up with aidatajakarta)
+
+```bash
+# 1. Clone repo
+sudo git clone https://github.com/chikiball/donasiE99.git /home/nandha/server/sites/donasie99
+
+# 2. Copy nginx config
+sudo cp /home/nandha/server/sites/donasie99/server-setup/nginx/donasie99.conf \
+        /home/nandha/server/nginx/conf.d/donasie99.conf
+
+# 3. Build and start
+cd /home/nandha/server/sites/donasie99
+sudo docker compose up -d --build
+
+# 4. Reload nginx
+sudo docker exec nginx-gateway nginx -s reload
+```
+
+Then add a public hostname in Cloudflare (one.dash.cloudflare.com → Networks → Connectors → home-server → Public Hostname):
+
+| Field | Value |
+|---|---|
+| Subdomain | `donasie99` |
+| Domain | `nandharu.uk` |
+| Type | `HTTP` |
+| URL | `nginx-gateway:80` |
+
+#### Useful commands
+
+| Task | Command |
+|---|---|
+| View logs | `cd /home/nandha/server/sites/donasie99 && sudo docker compose logs -f --tail 50` |
+| Redeploy | `sudo bash /home/nandha/server/scripts/deploy-site.sh donasie99` |
+| Restart app | `cd /home/nandha/server/sites/donasie99 && sudo docker compose restart` |
+| Reload nginx | `sudo docker exec nginx-gateway nginx -s reload` |
+| Status dashboard | `sudo bash /home/nandha/server/scripts/status.sh` |
+| Force rebuild | `cd /home/nandha/server/sites/donasie99 && sudo docker compose up -d --build --force-recreate` |
+
+#### Database backup (home server)
+
+```bash
+sudo docker exec donasie99 cat /data/db.json > db.json
+git add db.json
+git commit -m "Backup db.json $(date +%Y-%m-%d)"
+git push
+```
+
+#### IMPORTANT: gunicorn must run with 1 worker only
+Multiple workers write `db.json` concurrently and will corrupt data. The `docker-compose.yml` enforces this via `CMD ["gunicorn", "--workers", "1", ...]`.
 
 ---
 
