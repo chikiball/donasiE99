@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
-RUN useradd -r -s /bin/false appuser
+RUN useradd -r -s /bin/false appuser && mkdir -p /data && chown appuser:appuser /data
 USER appuser
 ENV PYTHONDONTWRITEBYTECODE=1
 EXPOSE 8080
