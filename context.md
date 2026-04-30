@@ -250,7 +250,7 @@ Visitor → https://donasie99.nandharu.uk
 | File | Purpose |
 |---|---|
 | `docker-compose.yml` | App container (joins server-net, named volume, hardened) |
-| `Dockerfile` | Updated — non-root appuser, gunicorn, curl healthcheck |
+| `Dockerfile` | Updated — non-root appuser, gunicorn, curl healthcheck, `/data` pre-created with correct ownership |
 | `server-setup/nginx/donasie99.conf` | Nginx reverse proxy config |
 
 #### Deployment steps (server already set up with aidatajakarta)
@@ -302,6 +302,9 @@ git push
 
 #### IMPORTANT: gunicorn must run with 1 worker only
 Multiple workers write `db.json` concurrently and will corrupt data. The `docker-compose.yml` enforces this via `CMD ["gunicorn", "--workers", "1", ...]`.
+
+#### IMPORTANT: /data volume must be pre-created as appuser in the Dockerfile
+Docker named volumes are initialized from the image at first mount. If `/data` isn't created and owned by `appuser` in the Dockerfile before `USER appuser`, the volume is owned by root and all writes to `db.json` silently fail — `saveDB()` in the frontend uses `.catch(function() {})` so the UI shows success even when the server write fails. The fix: `RUN useradd ... && mkdir -p /data && chown appuser:appuser /data`.
 
 ---
 
